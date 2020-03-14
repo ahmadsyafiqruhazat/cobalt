@@ -1,11 +1,6 @@
 module.exports = {
-  extends: [
-    // add more generic rulesets here, such as:
-    // 'eslint:recommended',
-    "plugin:vue/recommended"
-  ],
-
   rules: {
+    "vue/component-name-in-template-casing": ["error", "PascalCase"],
     "no-console": process.env.NODE_ENV === "production" ? "error" : "off",
     "no-debugger": process.env.NODE_ENV === "production" ? "error" : "off"
   },
@@ -13,14 +8,17 @@ module.exports = {
   root: true,
 
   env: {
-    node: true
+    node: true,
+    browser: true
   },
 
   extends: [
     "plugin:vue/recommended",
     "plugin:vue/essential",
     "eslint:recommended",
-    "@vue/prettier"
+    "@vue/prettier",
+    "prettier/vue",
+    "plugin:prettier/recommended"
   ],
 
   parserOptions: {

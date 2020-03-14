@@ -1,11 +1,11 @@
 {
-  "name": "vuexy-vuejs-html-laravel-dashboard-admin-template",
+  "name": "cobalt",
   "version": "4.2.0",
   "private": true,
   "scripts": {
-    "serve": "./node_modules/.bin/vue-cli-service serve",
-    "build": "./node_modules/.bin/vue-cli-service build",
-    "lint": "./node_modules/.bin/vue-cli-service lint"
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "@chenfengyuan/vue-countdown": "^1.1.2",
@@ -86,5 +86,20 @@
     "tailwindcss": "^1.0.1",
     "vue-template-compiler": "^2.6.10",
     "webpack": "^4.42.0"
-  }
+  },
+  "description": "",
+  "main": "./node_modules/.bin/vue-cli-service serve",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/a-syafiq/cobalt.git"
+  },
+  "keywords": [
+    "cobalt"
+  ],
+  "author": "Ahmad Syafiq Bin Ruhazat",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/a-syafiq/cobalt/issues"
+  },
+  "homepage": "https://github.com/a-syafiq/cobalt#readme"
 }
