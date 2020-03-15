@@ -15,6 +15,7 @@
 
 <script>
 import themeConfig from "@/../themeConfig.js";
+import firebase from "firebase/app";
 
 export default {
   data() {
@@ -44,6 +45,11 @@ export default {
 
     window.addEventListener("resize", this.handleWindowResize);
     window.addEventListener("scroll", this.handleScroll);
+    firebase.auth().onAuthStateChanged(firebaseUser => {
+      if (firebaseUser) {
+        this.$store.dispatch("auth/autoSignIn", firebaseUser);
+      }
+    });
   },
   destroyed() {
     window.removeEventListener("resize", this.handleWindowResize);

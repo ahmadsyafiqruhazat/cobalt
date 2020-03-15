@@ -32,6 +32,7 @@
                 </div>
                 <div>
                   <vs-input
+                    v-model="email"
                     v-validate="'required|email|min:3'"
                     data-vv-validate-on="blur"
                     name="email"
@@ -39,7 +40,6 @@
                     icon="icon icon-user"
                     icon-pack="feather"
                     label-placeholder="Email"
-                    v-model="email"
                     class="w-full"
                   />
                   <span class="text-danger text-sm">{{
@@ -47,15 +47,15 @@
                   }}</span>
 
                   <vs-input
-                    data-vv-validate-on="blur"
+                    v-model="password"
                     v-validate="'required|min:6|max:10'"
+                    data-vv-validate-on="blur"
                     type="password"
                     name="password"
                     icon-no-border
                     icon="icon icon-lock"
                     icon-pack="feather"
                     label-placeholder="Password"
-                    v-model="password"
                     class="w-full mt-6"
                   />
                   <span class="text-danger text-sm">{{
@@ -90,6 +90,8 @@
 </template>
 
 <script>
+import router from "@/router";
+
 export default {
   data() {
     return {
@@ -139,7 +141,10 @@ export default {
     },
 
     registerUser() {
-      if (!this.checkLogin()) return;
+      if (!this.checkLogin()) {
+        router.push(router.currentRoute.query.to || "/");
+        return;
+      }
       this.$router.push("/pages/register").catch(() => {});
     }
   }

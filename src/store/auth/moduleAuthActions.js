@@ -64,11 +64,11 @@ export default {
         icon: "icon-alert-circle",
         color: "warning"
       });
-
+      router.push(router.currentRoute.query.to || "/");
       return false;
     }
 
-    // Try to sigin
+    // Try to sign in
     firebase
       .auth()
       .signInWithEmailAndPassword(
@@ -319,5 +319,20 @@ export default {
           color: "danger"
         });
       });
+  },
+  logout({ dispatch }, payload) {
+    const firebaseCurrentUser = firebase.auth().currentUser;
+
+    if (firebaseCurrentUser) {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          router.push("/pages/login").catch(() => {});
+        });
+    }
+  },
+  autoSignIn({ commit }, payload) {
+    router.push(router.currentRoute.query.to || "/");
   }
 };

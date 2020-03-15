@@ -54,6 +54,9 @@ import "@/firebase/firebaseConfig";
 // Vue select css
 // Note: In latest version you have to add it separately
 // import 'vue-select/dist/vue-select.css';
+// VeeValidate
+import VeeValidate from "vee-validate";
+Vue.use(VeeValidate);
 
 Vue.config.productionTip = false;
 

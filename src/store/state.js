@@ -25,7 +25,27 @@ const userDefaults = {
   status: "online",
   userRole: "admin"
 };
+// Set default values for active-user
+// More data can be added by auth provider or other plugins/packages
+const getUserInfo = () => {
+  const userInfo = {};
 
+  // Update property in user
+  Object.keys(userDefaults).forEach(key => {
+    // If property is defined in localStorage => Use that
+    userInfo[key] = userInfoLocalStorage[key]
+      ? userInfoLocalStorage[key]
+      : userDefaults[key];
+  });
+
+  // Include properties from localStorage
+  Object.keys(userInfoLocalStorage).forEach(key => {
+    if (userInfo[key] === undefined && userInfoLocalStorage[key] !== null)
+      userInfo[key] = userInfoLocalStorage[key];
+  });
+
+  return userInfo;
+};
 // Check if device is touch device
 // This is used to remove perfect scrollbar from touch devices
 // Using Dynamic components

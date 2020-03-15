@@ -9,6 +9,7 @@
 
 import Vue from "vue";
 import Router from "vue-router";
+import store from "./store/store";
 
 Vue.use(Router);
 
@@ -32,12 +33,18 @@ const router = new Router({
         {
           path: "/",
           name: "home",
-          component: () => import("./views/Home.vue")
+          component: () => import("./views/Home.vue"),
+          meta: {
+            requiresAuth: true
+          }
         },
         {
           path: "/page2",
           name: "page-2",
-          component: () => import("./views/Page2.vue")
+          component: () => import("./views/Page2.vue"),
+          meta: {
+            requiresAuth: true
+          }
         }
       ]
     },
@@ -57,6 +64,11 @@ const router = new Router({
           component: () => import("@/views/pages/Login.vue")
         },
         {
+          path: "/pages/register",
+          name: "page-register",
+          component: () => import("@/views/pages/register/Register.vue")
+        },
+        {
           path: "/pages/error-404",
           name: "page-error-404",
           component: () => import("@/views/pages/Error404.vue")
@@ -71,6 +83,14 @@ const router = new Router({
   ]
 });
 
+router.beforeEach((to, from, next) => {
+  const isLoggedIn = store.state.auth.isUserLoggedIn();
+  const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+
+  if (requiresAuth && !isLoggedIn) next({ name: "page-login" });
+  else if (!requiresAuth && isLoggedIn) next({ name: "home" });
+  else next();
+});
 router.afterEach(() => {
   // Remove initial loading
   const appLoading = document.getElementById("loading-bg");

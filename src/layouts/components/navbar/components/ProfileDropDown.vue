@@ -85,7 +85,8 @@ export default {
   },
   methods: {
     logout() {
-      this.$router.push("/pages/login").catch(() => {});
+      // if user is logged in via firebase
+      this.$store.dispatch("auth/logout");
     }
   }
 };
