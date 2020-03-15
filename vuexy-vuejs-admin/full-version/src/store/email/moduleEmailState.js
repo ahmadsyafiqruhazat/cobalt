@@ -7,11 +7,10 @@
   Author URL: http://www.themeforest.net/user/pixinvent
 ==========================================================================================*/
 
-
 export default {
   mails: [],
   mail_filter: null,
   mailTags: [],
   meta: {},
-  mailSearchQuery: ''
-}
+  mailSearchQuery: ""
+};

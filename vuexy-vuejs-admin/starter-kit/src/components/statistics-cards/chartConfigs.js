@@ -9,7 +9,7 @@ export default {
     },
     chart: {
       toolbar: {
-        show: false,
+        show: false
       },
       sparkline: {
         enabled: true
@@ -19,11 +19,11 @@ export default {
       enabled: false
     },
     stroke: {
-      curve: 'smooth',
+      curve: "smooth",
       width: 2.5
     },
     fill: {
-      type: 'gradient',
+      type: "gradient",
       gradient: {
         shadeIntensity: 0.9,
         opacityFrom: 0.5,
@@ -32,24 +32,26 @@ export default {
       }
     },
     xaxis: {
-      type: 'numeric',
+      type: "numeric",
       lines: {
-        show: false,
+        show: false
       },
       axisBorder: {
-        show: false,
+        show: false
       },
       labels: { show: false }
     },
-    yaxis: [{
-      y: 0,
-      offsetX: 0,
-      offsetY: 0,
-      padding: { left: 0, right: 0 },
-    }],
+    yaxis: [
+      {
+        y: 0,
+        offsetX: 0,
+        offsetY: 0,
+        padding: { left: 0, right: 0 }
+      }
+    ],
     tooltip: {
       x: { show: false }
-    },
+    }
   },
   lineChartOptions: {
     grid: {
@@ -60,16 +62,16 @@ export default {
       }
     },
     chart: {
-      type: 'line',
+      type: "line",
       dropShadow: {
         enabled: true,
         top: 5,
         left: 0,
         blur: 4,
-        opacity: 0.10,
+        opacity: 0.1
       },
       toolbar: {
-        show: false,
+        show: false
       },
       sparkline: {
         enabled: true
@@ -77,23 +79,23 @@ export default {
     },
     stroke: {
       width: 5,
-      curve: 'smooth'
+      curve: "smooth"
     },
     xaxis: {
-      type: 'numeric',
+      type: "numeric"
     },
     // colors: ['#7367F0'],
     fill: {
-      type: 'gradient',
+      type: "gradient",
       gradient: {
-        shade: 'dark',
+        shade: "dark",
         // gradientToColors: ['#A9A2F6'],
         shadeIntensity: 1,
-        type: 'horizontal',
+        type: "horizontal",
         opacityFrom: 1,
         opacityTo: 1,
         stops: [0, 100, 100, 100]
-      },
+      }
     },
     markers: {
       size: 0,
@@ -103,7 +105,6 @@ export default {
     },
     tooltip: {
       x: { show: false }
-    },
+    }
   }
-
-}
+};

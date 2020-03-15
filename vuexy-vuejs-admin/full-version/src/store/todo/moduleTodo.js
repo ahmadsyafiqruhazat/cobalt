@@ -7,11 +7,10 @@
   Author URL: http://www.themeforest.net/user/pixinvent
 ==========================================================================================*/
 
-
-import state from './moduleTodoState.js'
-import mutations from './moduleTodoMutations.js'
-import actions from './moduleTodoActions.js'
-import getters from './moduleTodoGetters.js'
+import state from "./moduleTodoState.js";
+import mutations from "./moduleTodoMutations.js";
+import actions from "./moduleTodoActions.js";
+import getters from "./moduleTodoGetters.js";
 
 export default {
   namespaced: true,
@@ -19,4 +18,4 @@ export default {
   mutations,
   actions,
   getters
-}
+};

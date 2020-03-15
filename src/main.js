@@ -49,6 +49,8 @@ import "prismjs/themes/prism-tomorrow.css";
 // Feather font icon
 require("./assets/css/iconfont.css");
 
+// Firebase
+import "@/firebase/firebaseConfig";
 // Vue select css
 // Note: In latest version you have to add it separately
 // import 'vue-select/dist/vue-select.css';

@@ -19,11 +19,11 @@ export default {
       enabled: false
     },
     stroke: {
-      curve: 'smooth',
+      curve: "smooth",
       width: 2.5
     },
     fill: {
-      type: 'gradient',
+      type: "gradient",
       gradient: {
         shadeIntensity: 0.9,
         opacityFrom: 0.5,
@@ -32,7 +32,7 @@ export default {
       }
     },
     xaxis: {
-      type: 'numeric',
+      type: "numeric",
       lines: {
         show: false
       },
@@ -65,13 +65,13 @@ export default {
       }
     },
     chart: {
-      type: 'line',
+      type: "line",
       dropShadow: {
         enabled: true,
         top: 5,
         left: 0,
         blur: 4,
-        opacity: 0.10
+        opacity: 0.1
       },
       toolbar: {
         show: false
@@ -82,19 +82,19 @@ export default {
     },
     stroke: {
       width: 5,
-      curve: 'smooth'
+      curve: "smooth"
     },
     xaxis: {
-      type: 'numeric'
+      type: "numeric"
     },
     // colors: ['#7367F0'],
     fill: {
-      type: 'gradient',
+      type: "gradient",
       gradient: {
-        shade: 'dark',
+        shade: "dark",
         // gradientToColors: ['#A9A2F6'],
         shadeIntensity: 1,
-        type: 'horizontal',
+        type: "horizontal",
         opacityFrom: 1,
         opacityTo: 1,
         stops: [0, 100, 100, 100]
@@ -110,5 +110,4 @@ export default {
       x: { show: false }
     }
   }
-
-}
+};

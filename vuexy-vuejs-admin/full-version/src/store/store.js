@@ -7,24 +7,22 @@
   Author URL: http://www.themeforest.net/user/pixinvent
 ==========================================================================================*/
 
+import Vue from "vue";
+import Vuex from "vuex";
 
-import Vue from 'vue'
-import Vuex from 'vuex'
+import state from "./state";
+import getters from "./getters";
+import mutations from "./mutations";
+import actions from "./actions";
 
-import state from './state'
-import getters from './getters'
-import mutations from './mutations'
-import actions from './actions'
-
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 // import moduleTodo from './todo/moduleTodo.js'
 // import moduleCalendar from './calendar/moduleCalendar.js'
 // import moduleChat from './chat/moduleChat.js'
 // import moduleEmail from './email/moduleEmail.js'
-import moduleAuth from './auth/moduleAuth.js'
-import moduleECommerce from './eCommerce/moduleECommerce.js'
-
+import moduleAuth from "./auth/moduleAuth.js";
+import moduleECommerce from "./eCommerce/moduleECommerce.js";
 
 export default new Vuex.Store({
   getters,
@@ -39,5 +37,5 @@ export default new Vuex.Store({
     auth: moduleAuth,
     eCommerce: moduleECommerce
   },
-  strict: process.env.NODE_ENV !== 'production'
-})
+  strict: process.env.NODE_ENV !== "production"
+});

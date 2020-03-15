@@ -17,10 +17,13 @@ import actions from "./actions";
 
 Vue.use(Vuex);
 
+import moduleAuth from "./auth/moduleAuth.js";
+
 export default new Vuex.Store({
   getters,
   mutations,
   state,
   actions,
+  auth: moduleAuth,
   strict: process.env.NODE_ENV !== "production"
 });

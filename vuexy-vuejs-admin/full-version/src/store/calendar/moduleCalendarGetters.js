@@ -7,7 +7,6 @@
   Author URL: http://www.themeforest.net/user/pixinvent
 ==========================================================================================*/
 
-
 export default {
-  getEvent: state => (eventId) => state.events.find((event) => event.id === eventId)
-}
+  getEvent: state => eventId => state.events.find(event => event.id === eventId)
+};

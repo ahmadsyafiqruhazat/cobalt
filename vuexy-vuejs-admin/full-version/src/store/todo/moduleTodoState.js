@@ -7,10 +7,9 @@
   Author URL: http://www.themeforest.net/user/pixinvent
 ==========================================================================================*/
 
-
 export default {
   tasks: [],
   taskTags: [],
-  todoSearchQuery: '',
+  todoSearchQuery: "",
   todoFilter: null
-}
+};
