@@ -53,6 +53,14 @@ const router = new Router({
           meta: {
             requiresAuth: true
           }
+        },
+        {
+          path: "/profile/schedule",
+          name: "schedule",
+          component: () => import("./views/Schedule.vue"),
+          meta: {
+            requiresAuth: true
+          }
         }
       ]
     },

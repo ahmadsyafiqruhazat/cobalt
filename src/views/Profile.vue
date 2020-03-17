@@ -13,6 +13,15 @@
         <feather-icon icon="MessageSquareIcon" svg-classes="w-4 h-4" />
         <span class="ml-2">Chat</span>
       </li>
+      <li
+        class="flex py-2 px-4 cursor-pointer hover:bg-primary hover:text-white"
+      >
+        <!-- TODO: Change hardcoded profile link to hook up to backend -->
+        <router-link to="/profile/schedule">
+          <feather-icon icon="UserIcon" svg-classes="w-4 h-4" />
+          <span class="ml-2">View Schedule</span>
+        </router-link>
+      </li>
     </div>
     <div class="past-experience-container">
       <div
