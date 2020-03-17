@@ -26,8 +26,11 @@
           <li
             class="flex py-2 px-4 cursor-pointer hover:bg-primary hover:text-white"
           >
-            <feather-icon icon="UserIcon" svg-classes="w-4 h-4" />
-            <span class="ml-2">Profile</span>
+            <!-- TODO: Change hardcoded profile link to hook up to backend -->
+            <router-link to="/profile">
+              <feather-icon icon="UserIcon" svg-classes="w-4 h-4" />
+              <span class="ml-2">Profile</span>
+            </router-link>
           </li>
 
           <li
