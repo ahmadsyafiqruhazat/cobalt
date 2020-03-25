@@ -19,5 +19,12 @@ export default [
     name: "Page 2",
     slug: "page2",
     icon: "FileIcon"
+  },
+  {
+    url: "/directory",
+    name: "Directory",
+    slug: "directory",
+    icon: "DirectoryIcon"
+    // TODO: update icon
   }
 ];

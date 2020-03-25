@@ -1,37 +1,12 @@
 <template>
-  <div class="profile">
-    <div class="profile-details">
-      <img :src="image" class="profile-image" />
-      <h1>
-        {{ name }}
-      </h1>
-      <p>{{ description }}</p>
-      <p>{{ contact }} | {{ email }}</p>
-      <li
-        class="flex py-2 px-4 cursor-pointer hover:bg-primary hover:text-white"
-      >
-        <feather-icon icon="MessageSquareIcon" svg-classes="w-4 h-4" />
-        <span class="ml-2">Chat</span>
-      </li>
-      <li
-        class="flex py-2 px-4 cursor-pointer hover:bg-primary hover:text-white"
-      >
-        <!-- TODO: Change hardcoded profile link to hook up to backend -->
-        <router-link to="/profile/schedule">
-          <feather-icon icon="UserIcon" svg-classes="w-4 h-4" />
-          <span class="ml-2">View Schedule</span>
-        </router-link>
-      </li>
-    </div>
-    <div class="past-experience-container">
-      <div
-        v-for="item in experiences"
-        :key="item.id"
-        class="past-experience-item"
-      >
+  <div>
+    <h1>Tutors Directory</h1>
+    <div class="tutors-container">
+      <div v-for="item in tutors" :key="item.id" class="tutor-item">
         <h1>{{ item.title }}</h1>
-        <img :src="item.image" class="experience-image" />
+        <img :src="item.image" class="tutor-image" />
         <p>{{ item.description }}</p>
+        <router-link :to="item.route">View Profile</router-link>
       </div>
     </div>
   </div>
@@ -39,9 +14,14 @@
 
 <script>
 export default {
-  name: "ProfileView",
+  name: "Directory",
   components: {},
-  props: {},
+  props: {
+    navbarColor: {
+      type: String,
+      default: "#fff"
+    }
+  },
   data: function() {
     return {
       image: "/static/img/profile_pic.png",
@@ -50,10 +30,28 @@ export default {
       email: "sample@email-me.com",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
-      experiences: [
-        { id: 0, title: "Experience 1", description: "ipsum", image: "" },
-        { id: 1, title: "Experience 2", description: "ipsum", image: "" },
-        { id: 2, title: "Experience 3", description: "ipsum", image: "" }
+      tutors: [
+        {
+          id: 0,
+          title: "Name 1",
+          description: "ipsum",
+          image: "",
+          route: "/profile-id-123"
+        },
+        {
+          id: 1,
+          title: "Name 2",
+          description: "ipsum",
+          image: "",
+          route: "/profile-id-234"
+        },
+        {
+          id: 2,
+          title: "Name 3",
+          description: "ipsum",
+          image: "",
+          route: "/profile-id-345"
+        }
       ]
     };
   },
@@ -86,10 +84,11 @@ p {
   margin: 5px;
 }
 
-.experience-image {
+.tutor-image {
   background-color: #404040;
   height: 100px;
   width: 90%;
+  border-radius: 50%;
   margin: auto;
 }
 .profile {
@@ -109,12 +108,12 @@ p {
   align-items: center;
 }
 
-.past-experience-container {
+.tutors-container {
   display: flex;
   flex-direction: row;
 }
 
-.past-experience-item {
+.tutor-item {
   display: flex;
   flex-direction: column;
   margin: 10px;
