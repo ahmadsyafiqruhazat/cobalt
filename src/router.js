@@ -21,6 +21,7 @@ const router = new Router({
   },
   routes: [
     {
+      // TODO: Revert routing rules after integration with backend
       // =============================================================================
       // MAIN LAYOUT ROUTES
       // =============================================================================
@@ -34,14 +35,6 @@ const router = new Router({
           path: "/",
           name: "home",
           component: () => import("./views/Home.vue"),
-          meta: {
-            requiresAuth: true
-          }
-        },
-        {
-          path: "/page2",
-          name: "page-2",
-          component: () => import("./views/Page2.vue"),
           meta: {
             requiresAuth: true
           }
@@ -63,11 +56,89 @@ const router = new Router({
           }
         },
         {
+          path: "/pages/profile",
+          name: "page-profile",
+          component: () => import("@/views/pages/Profile.vue"),
+          meta: {
+            breadcrumb: [
+              { title: "Home", url: "/" },
+              { title: "Pages" },
+              { title: "Profile", active: true }
+            ],
+            pageTitle: "Profile",
+            // rule: "editor"
+            requiresAuth: true
+          }
+        },
+        {
+          path: "/apps/user/user-list",
+          name: "app-user-list",
+          component: () => import("@/views/apps/user/user-list/UserList.vue"),
+          meta: {
+            breadcrumb: [
+              { title: "Home", url: "/" },
+              { title: "User" },
+              { title: "List", active: true }
+            ],
+            pageTitle: "User List",
+            // rule: "editor"
+            requiresAuth: true
+          }
+        },
+        {
+          path: "/apps/user/user-view/:userId",
+          name: "app-user-view",
+          component: () => import("@/views/apps/user/UserView.vue"),
+          meta: {
+            breadcrumb: [
+              { title: "Home", url: "/" },
+              { title: "User" },
+              { title: "View", active: true }
+            ],
+            pageTitle: "User View",
+            // rule: "editor"
+            requiresAuth: true
+          }
+        },
+        {
+          path: "/apps/user/user-edit/:userId",
+          name: "app-user-edit",
+          component: () => import("@/views/apps/user/user-edit/UserEdit.vue"),
+          meta: {
+            breadcrumb: [
+              { title: "Home", url: "/" },
+              { title: "User" },
+              { title: "Edit", active: true }
+            ],
+            pageTitle: "User Edit",
+            // rule: "editor"
+            requiresAuth: true
+          }
+        },
+        {
           path: "/directory",
           name: "directory",
           component: () => import("./views/Directory.vue"),
           meta: {
             requiresAuth: true
+          }
+        },
+        {
+          path: "/dashboard/analytics",
+          name: "dashboard-analytics",
+          component: () => import("./views/DashboardAnalytics.vue"),
+          meta: {
+            requiresAuth: true
+            // rule: "admin"
+          }
+        },
+        {
+          path: "/dashboard/ecommerce",
+          name: "dashboard-ecommerce",
+          component: () => import("./views/DashboardECommerce.vue"),
+          meta: {
+            requiresAuth: true
+            // rule: "admin"
           }
         }
       ]
