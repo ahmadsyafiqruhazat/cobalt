@@ -17,7 +17,7 @@
       </span>
     </vs-alert> -->
 
-    <div id="user-data" v-if="user_data">
+    <div v-if="user_data" id="user-data">
 
       <vx-card title="Account Information" class="mb-base">
 
@@ -26,16 +26,16 @@
         <div class="vx-row">
 
           <!-- Avatar Col -->
-          <div class="vx-col" id="avatar-col">
+          <div id="avatar-col" class="vx-col">
             <div class="img-container mb-4">
               <img :src="user_data.avatar" class="rounded w-full" />
-              <input type="file" class="hidden" ref="update_avatar_input" @change="update_avatar" accept="image/*">
+              <input ref="update_avatar_input" type="file" class="hidden" accept="image/*" @change="update_avatar">
               <vs-button type="border" class="mr-4" @click="$refs.update_avatar_input.click()">Change Avatar            </vs-button>
             </div>
           </div>
 
           <!-- Information - Col 1 -->
-          <div class="vx-col flex-1" id="account-info-col-1">
+          <div id="account-info-col-1" class="vx-col flex-1">
             <table>
               <tr>
                 <td class="font-semibold">Username</td>
@@ -46,7 +46,7 @@
               <tr>
                 <td class="font-semibold">Tutor's Name</td>
                 <vs-input v-model="user_data.name" v-validate="'required|alpha_num'" name="name" />
-                <span class="text-danger text-sm"  v-show="errors.has('name')">{{ errors.first('name') }}</span>
+                <span v-show="errors.has('name')"  class="text-danger text-sm">{{ errors.first('name') }}</span>
               </tr>
               <tr>
                 <td class="font-semibold">Gender</td>
@@ -62,16 +62,16 @@
               <tr>
                 <td class="font-semibold">Birth Date</td>
 
-                <flat-pickr v-model="user_data.dob" :config="{ dateFormat: 'd F Y', maxDate: new Date() }" class="w-full" v-validate="'required'" name="dob" />
-                <span class="text-danger text-sm"  v-show="errors.has('dob')">{{ errors.first('dob') }}</span>
+                <flat-pickr v-model="user_data.dob" v-validate="'required'" :config="{ dateFormat: 'd F Y', maxDate: new Date() }" class="w-full" name="dob" />
+                <span v-show="errors.has('dob')"  class="text-danger text-sm">{{ errors.first('dob') }}</span>
 
 
               </tr>
 
               <tr>
                 <td class="font-semibold">Languages</td>
-                <v-select v-model="user_data.languages_known" multiple :closeOnSelect="false" :options="langOptions" v-validate="'required'" name="lang_known" :dir="$vs.rtl ? 'rtl' : 'ltr'" />
-                <span class="text-danger text-sm"  v-show="errors.has('lang_known')">{{ errors.first('lang_known') }}</span>
+                <v-select v-model="user_data.languages_known" v-validate="'required'" multiple :close-on-select="false" :options="langOptions" name="lang_known" :dir="$vs.rtl ? 'rtl' : 'ltr'" />
+                <span v-show="errors.has('lang_known')"  class="text-danger text-sm">{{ errors.first('lang_known') }}</span>
 
 
               </tr>
@@ -81,27 +81,27 @@
           <!-- /Information - Col 1 -->
 
           <!-- Information - Col 2 -->
-          <div class="vx-col flex-1" id="account-info-col-2">
+          <div id="account-info-col-2" class="vx-col flex-1">
             <table>
               <td class="font-bold">Contact</td>
               <tr>
                 <td class="font-semibold">Email</td>
-                <vs-input class="w-full mt-4" v-model="user_data.email" type="email" v-validate="'required|email'" name="email" />
-                <span class="text-danger text-sm"  v-show="errors.has('email')">{{ errors.first('email') }}</span>
+                <vs-input v-model="user_data.email" v-validate="'required|email'" class="w-full mt-4" type="email" name="email" />
+                <span v-show="errors.has('email')"  class="text-danger text-sm">{{ errors.first('email') }}</span>
 
 
               </tr>
               <tr>
                 <td class="font-semibold">Mobile</td>
-                <vs-input class="w-full mt-4" v-model="user_data.mobile" v-validate="{regex: '^\\+?([0-9]+)$' }" name="mobile" />
-                <span class="text-danger text-sm"  v-show="errors.has('mobile')">{{ errors.first('mobile') }}</span>
+                <vs-input v-model="user_data.mobile" v-validate="{regex: '^\\+?([0-9]+)$' }" class="w-full mt-4" name="mobile" />
+                <span v-show="errors.has('mobile')"  class="text-danger text-sm">{{ errors.first('mobile') }}</span>
 
               </tr>
 
             </table>
           </div>
 
-          <div class="vx-col flex-1" id="account-info-col-2">
+          <div id="account-info-col-2" class="vx-col flex-1">
 
           </div>
           <!-- /Information - Col 2 -->
@@ -113,21 +113,21 @@
 
       <vx-card title="About Myself" class="mb-base">
                 <vs-textarea v-model="user_data.about" name="about" />
-                <span class="text-danger text-sm"  v-show="errors.has('about')">{{ errors.first('about') }}</span>
+                <span v-show="errors.has('about')"  class="text-danger text-sm">{{ errors.first('about') }}</span>
 
       </vx-card>
 
       <vx-card title="My Lessons" class="mb-base">
             <table>
-                <v-select v-model="user_data.subjectlist" multiple :closeOnSelect="false" :options="subjectOptions" v-validate="'required'" name="subjectlist" :dir="$vs.rtl ? 'rtl' : 'ltr'" />
-                <span class="text-danger text-sm"  v-show="errors.has('subjectlist')">{{ errors.first('subjectlist') }}</span>
+                <v-select v-model="user_data.subjectlist" v-validate="'required'" multiple :close-on-select="false" :options="subjectOptions" name="subjectlist" :dir="$vs.rtl ? 'rtl' : 'ltr'" />
+                <span v-show="errors.has('subjectlist')"  class="text-danger text-sm">{{ errors.first('subjectlist') }}</span>
             </table>
       </vx-card>
 
 
     <div class="vx-row">
       <div class="vx-col w-full">
-          <vs-button class="ml-auto mt-2" @click="save_changes" :disabled="!validateForm">Save Changes</vs-button>
+          <vs-button class="ml-auto mt-2" :disabled="!validateForm" @click="save_changes">Save Changes</vs-button>
           <vs-button class="ml-4 mt-2" type="border" color="warning" @click="reset_data">Reset</vs-button>
         </div>
       </div>
@@ -247,22 +247,6 @@ export default {
       this.fetch_user_data(this.$route.params.userId)
     }
   },
-    methods: {
-    save_changes () {
-      /* eslint-disable */
-      if (!this.validateForm) return
-
-      // Here will go your API call for updating data
-      // You can get data in "this.data_local"
-
-      /* eslint-enable */
-    },
-    reset_data () {
-      this.data_local = Object.assign({}, this.data)
-    }
-  },
-  methods: {
-  },
 
   created () {
     // Register Module UserManagement Module
@@ -278,9 +262,25 @@ export default {
           this.user_not_found = true
           return
         }
-        console.error(err)
+        // console.error(err)
       })
+    },
+    methods: {
+    save_changes () {
+      /* eslint-disable */
+      if (!this.validateForm) return
+
+      // Here will go your API call for updating data
+      // You can get data in "this.data_local"
+
+      /* eslint-enable */
+    },
+    reset_data () {
+      this.data_local = Object.assign({}, this.data)
     }
+  },
+  methods: {
+  }
 }
 
 </script>

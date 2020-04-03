@@ -473,7 +473,7 @@ export default {
         this.salesBarSession = response.data;
       })
       .catch(error => {
-        console.log(error);
+        // console.log(error);
       });
 
     // Support Tracker
