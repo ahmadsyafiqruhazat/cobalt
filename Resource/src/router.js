@@ -39,14 +39,6 @@ const router = new Router({
           }
         },
         {
-          path: "/page2",
-          name: "page-2",
-          component: () => import("./views/Page2.vue"),
-          meta: {
-            requiresAuth: true
-          }
-        },
-        {
           path: "/profile",
           name: "profile",
           component: () => import("./views/Profile.vue"),
@@ -73,7 +65,8 @@ const router = new Router({
               { title: "Profile", active: true }
             ],
             pageTitle: "Profile",
-            rule: "editor"
+            // rule: "editor"
+            requiresAuth: true
           }
         },
         {
@@ -87,7 +80,8 @@ const router = new Router({
               { title: "List", active: true }
             ],
             pageTitle: "User List",
-            rule: "editor"
+            // rule: "editor"
+            requiresAuth: true
           }
         },
         {
@@ -101,7 +95,8 @@ const router = new Router({
               { title: "View", active: true }
             ],
             pageTitle: "User View",
-            rule: "editor"
+            // rule: "editor"
+            requiresAuth: true
           }
         },
         {
@@ -115,7 +110,8 @@ const router = new Router({
               { title: "Edit", active: true }
             ],
             pageTitle: "User Edit",
-            rule: "editor"
+            // rule: "editor"
+            requiresAuth: true
           }
         },
         {
@@ -132,6 +128,7 @@ const router = new Router({
           component: () => import("./views/DashboardAnalytics.vue"),
           meta: {
             requiresAuth: true
+            // rule: "admin"
           }
         },
         {
@@ -139,7 +136,8 @@ const router = new Router({
           name: "dashboard-ecommerce",
           component: () => import("./views/DashboardECommerce.vue"),
           meta: {
-            rule: "admin"
+            requiresAuth: true
+            // rule: "admin"
           }
         }
       ]
