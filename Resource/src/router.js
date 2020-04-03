@@ -21,6 +21,7 @@ const router = new Router({
   },
   routes: [
     {
+      // TODO: Revert routing rules after integration with backend
       // =============================================================================
       // MAIN LAYOUT ROUTES
       // =============================================================================
