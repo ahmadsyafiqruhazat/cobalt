@@ -131,7 +131,7 @@ const router = new Router({
           name: "dashboard-analytics",
           component: () => import("./views/DashboardAnalytics.vue"),
           meta: {
-            rule: "editor"
+            requiresAuth: true
           }
         },
         {
