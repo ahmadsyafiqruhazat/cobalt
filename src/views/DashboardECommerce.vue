@@ -418,7 +418,7 @@ export default {
         this.subscribersGained = response.data;
       })
       .catch(error => {
-        console.log(error);
+        // console.log(error);
       });
 
     // Revenue Generated
@@ -428,7 +428,7 @@ export default {
         this.revenueGenerated = response.data;
       })
       .catch(error => {
-        console.log(error);
+        // console.log(error);
       });
 
     // Sales
@@ -438,7 +438,7 @@ export default {
         this.quarterlySales = response.data;
       })
       .catch(error => {
-        console.log(error);
+        // console.log(error);
       });
 
     // Orders - Statistics
@@ -448,7 +448,7 @@ export default {
         this.ordersRecevied = response.data;
       })
       .catch(error => {
-        console.log(error);
+        // console.log(error);
       });
 
     // Revenue Comparison
@@ -458,7 +458,7 @@ export default {
         this.revenueComparisonLine = response.data;
       })
       .catch(error => {
-        console.log(error);
+        // console.log(error);
       });
 
     // Goal Overview
@@ -468,7 +468,7 @@ export default {
         this.goalOverview = response.data;
       })
       .catch(error => {
-        console.log(error);
+        // console.log(error);
       });
 
     // Browser Analytics
@@ -478,7 +478,7 @@ export default {
         this.browserStatistics = response.data;
       })
       .catch(error => {
-        console.log(error);
+        // console.log(error);
       });
 
     // Client Retention
@@ -488,7 +488,7 @@ export default {
         this.clientRetentionBar = response.data;
       })
       .catch(error => {
-        console.log(error);
+        // console.log(error);
       });
 
     // Sessions By Device
@@ -498,7 +498,7 @@ export default {
         this.sessionsData = response.data;
       })
       .catch(error => {
-        console.log(error);
+        // console.log(error);
       });
 
     // Chat Log
@@ -508,7 +508,7 @@ export default {
         this.chatLog = response.data;
       })
       .catch(error => {
-        console.log(error);
+        // console.log(error);
       });
 
     // Customers
@@ -518,7 +518,7 @@ export default {
         this.customersData = response.data;
       })
       .catch(error => {
-        console.log(error);
+        // console.log(error);
       });
   }
 };
