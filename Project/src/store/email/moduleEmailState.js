@@ -12,5 +12,5 @@ export default {
   mail_filter: null,
   mailTags: [],
   meta: {},
-  mailSearchQuery: ""
-};
+  mailSearchQuery: ''
+}

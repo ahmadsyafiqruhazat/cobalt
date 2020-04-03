@@ -7,10 +7,10 @@
   Author URL: http://www.themeforest.net/user/pixinvent
 ==========================================================================================*/
 
-import state from "./moduleDataListState.js";
-import mutations from "./moduleDataListMutations.js";
-import actions from "./moduleDataListActions.js";
-import getters from "./moduleDataListGetters.js";
+import state from './moduleDataListState.js'
+import mutations from './moduleDataListMutations.js'
+import actions from './moduleDataListActions.js'
+import getters from './moduleDataListGetters.js'
 
 export default {
   isRegistered: false,
@@ -19,4 +19,4 @@ export default {
   mutations,
   actions,
   getters
-};
+}

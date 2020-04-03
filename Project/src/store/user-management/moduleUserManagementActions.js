@@ -7,7 +7,7 @@
   Author URL: http://www.themeforest.net/user/pixinvent
 ==========================================================================================*/
 
-import axios from "@/axios.js";
+import axios from '@/axios.js'
 
 export default {
   // addItem({ commit }, item) {
@@ -20,42 +20,42 @@ export default {
   //       .catch((error) => { reject(error) })
   //   })
   // },
-  fetchUsers({ commit }) {
+  fetchUsers ({ commit }) {
     return new Promise((resolve, reject) => {
       axios
-        .get("/api/user-management/users")
+        .get('/api/user-management/users')
         .then(response => {
-          commit("SET_USERS", response.data);
-          resolve(response);
+          commit('SET_USERS', response.data)
+          resolve(response)
         })
         .catch(error => {
-          reject(error);
-        });
-    });
+          reject(error)
+        })
+    })
   },
-  fetchUser(context, userId) {
+  fetchUser (context, userId) {
     return new Promise((resolve, reject) => {
       axios
         .get(`/api/user-management/users/${userId}`)
         .then(response => {
-          resolve(response);
+          resolve(response)
         })
         .catch(error => {
-          reject(error);
-        });
-    });
+          reject(error)
+        })
+    })
   },
-  removeRecord({ commit }, userId) {
+  removeRecord ({ commit }, userId) {
     return new Promise((resolve, reject) => {
       axios
         .delete(`/api/user-management/users/${userId}`)
         .then(response => {
-          commit("REMOVE_RECORD", userId);
-          resolve(response);
+          commit('REMOVE_RECORD', userId)
+          resolve(response)
         })
         .catch(error => {
-          reject(error);
-        });
-    });
+          reject(error)
+        })
+    })
   }
-};
+}

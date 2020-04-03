@@ -57,9 +57,6 @@
           </div>
 
 
-
-
-
     <div class="vx-row">
       <div class="vx-col w-full md:w-1/2">
 

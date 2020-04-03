@@ -1,9 +1,9 @@
 // axios
-import axios from "axios";
+import axios from 'axios'
 
-const baseURL = "";
+const baseURL = ''
 
 export default axios.create({
   baseURL
   // You can add your headers here
-});
+})

@@ -7,10 +7,10 @@
   Author URL: http://www.themeforest.net/user/pixinvent
 ==========================================================================================*/
 
-import state from "./moduleChatState.js";
-import mutations from "./moduleChatMutations.js";
-import actions from "./moduleChatActions.js";
-import getters from "./moduleChatGetters.js";
+import state from './moduleChatState.js'
+import mutations from './moduleChatMutations.js'
+import actions from './moduleChatActions.js'
+import getters from './moduleChatGetters.js'
 
 export default {
   namespaced: true,
@@ -18,4 +18,4 @@ export default {
   mutations,
   actions,
   getters
-};
+}

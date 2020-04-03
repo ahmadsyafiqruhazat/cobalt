@@ -35,8 +35,7 @@ const getUserInfo = () => {
     // If property is defined in localStorage => Use that
     userInfo[key] = userInfoLocalStorage[key]
       ? userInfoLocalStorage[key]
-      : userDefaults[key];
-  });
+      : userDefaults[key];});
 
   // Include properties from localStorage
   Object.keys(userInfoLocalStorage).forEach(key => {

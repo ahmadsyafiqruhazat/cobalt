@@ -237,17 +237,17 @@ export default {
       // data_local: JSON.parse(JSON.stringify(this.user_data)),
     }
   },
-    computed: {
+  computed: {
     validateForm () {
       return !this.errors.any()
     }
   },
-    watch: {
+  watch: {
     activeTab () {
       this.fetch_user_data(this.$route.params.userId)
     }
   },
-    methods: {
+  methods: {
     save_changes () {
       /* eslint-disable */
       if (!this.validateForm) return
@@ -280,7 +280,7 @@ export default {
         }
         console.error(err)
       })
-    }
+  }
 }
 
 </script>

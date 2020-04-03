@@ -9,7 +9,7 @@
 
 export default {
   // Chat Search Query
-  chatSearchQuery: "",
+  chatSearchQuery: '',
 
   // Stores All Contacts
   contacts: [],
@@ -19,4 +19,4 @@ export default {
 
   // Stores Chat data(log)
   chats: {}
-};
+}

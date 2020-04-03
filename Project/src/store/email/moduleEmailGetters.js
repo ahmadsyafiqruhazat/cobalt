@@ -8,12 +8,11 @@
 ==========================================================================================*/
 
 export default {
-  filteredMails: state =>
-    state.mails.filter(mail => {
-      return (
-        (state.mail_filter === "starred"
-          ? mail.isStarred
-          : state.mail_filter === mail.mailFolder ||
+  filteredMails: state => state.mails.filter(mail => {
+    return (
+      (state.mail_filter === 'starred'
+        ? mail.isStarred
+        : state.mail_filter === mail.mailFolder ||
             mail.labels.includes(state.mail_filter)) &&
         (mail.sender_name
           .toLowerCase()
@@ -27,7 +26,7 @@ export default {
           mail.message
             .toLowerCase()
             .includes(state.mailSearchQuery.toLowerCase()))
-      );
-    }),
+    )
+  }),
   getMail: state => emailId => state.mails.find(email => email.id === emailId)
-};
+}

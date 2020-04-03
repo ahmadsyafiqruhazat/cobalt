@@ -10,6 +10,6 @@
 export default {
   tasks: [],
   taskTags: [],
-  todoSearchQuery: "",
+  todoSearchQuery: '',
   todoFilter: null
-};
+}
