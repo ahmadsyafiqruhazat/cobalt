@@ -443,7 +443,7 @@ export default {
         this.checkpointReward = response.data;
       })
       .catch(error => {
-        console.log(error);
+        // console.log(error);
       });
 
     // Subscribers gained - Statistics
@@ -453,7 +453,7 @@ export default {
         this.subscribersGained = response.data;
       })
       .catch(error => {
-        console.log(error);
+        // console.log(error);
       });
 
     // Orders - Statistics
@@ -463,7 +463,7 @@ export default {
         this.ordersRecevied = response.data;
       })
       .catch(error => {
-        console.log(error);
+        // console.log(error);
       });
 
     // Sales bar - Analytics
@@ -483,7 +483,7 @@ export default {
         this.supportTracker = response.data;
       })
       .catch(error => {
-        console.log(error);
+        // console.log(error);
       });
 
     // Products Order
@@ -493,7 +493,7 @@ export default {
         this.productsOrder = response.data;
       })
       .catch(error => {
-        console.log(error);
+        // console.log(error);
       });
 
     // Sales Radar
@@ -503,7 +503,7 @@ export default {
         this.salesRadar = response.data;
       })
       .catch(error => {
-        console.log(error);
+        // console.log(error);
       });
 
     // Dispatched Orders
@@ -513,7 +513,7 @@ export default {
         this.dispatchedOrders = response.data;
       })
       .catch(error => {
-        console.log(error);
+        // console.log(error);
       });
   }
 };
