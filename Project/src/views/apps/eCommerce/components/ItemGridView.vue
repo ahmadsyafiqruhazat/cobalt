@@ -70,11 +70,9 @@ export default {
       this.$router
         .push({
           path: "/apps/user/user-view/",
-          name: "ecommerce-item-detail-view",
+          name: "tutor",
           params: { item_id: this.item.id }
         })
-        //   this.$router
-        //     .push({ path: `/apps/user/user-view/${userId}` })
         .catch(() => {});
     }
   }

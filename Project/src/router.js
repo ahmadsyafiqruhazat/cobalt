@@ -113,7 +113,7 @@ const router = new Router({
           }
         },
         { //TODO: Update to Tutors directory
-          path: '/apps/eCommerce/shop',
+          path: '/apps/tutor-directory/',
           name: 'ecommerce-shop',
           component: () => import('./views/apps/eCommerce/ECommerceShop.vue'),
           meta: {
@@ -125,6 +125,21 @@ const router = new Router({
             pageTitle: 'Shop',
             rule: 'editor',
             role: ['user']
+          }
+        },
+        {
+          path: '/apps/tutor-directory/:userId',
+          name: 'app-user-view',
+          component: () => import('@/views/apps/user/UserView.vue'),
+          meta: {
+            breadcrumb: [
+              { title: 'Home', url: '/' },
+              { title: 'User' },
+              { title: 'View', active: true }
+            ],
+            pageTitle: 'User View',
+            rule: 'editor',
+            role: ['user', 'tutor']
           }
         },
         {

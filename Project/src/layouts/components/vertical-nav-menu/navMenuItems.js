@@ -52,7 +52,7 @@ export default [
     ]
   },
   {
-    url: '/apps/eCommerce/shop',
+    url: '/apps/tutor-directory/',
     name: 'Tutor Directory',
     slug: 'tutor-directory',
     i18n: 'Tutors Directory'
