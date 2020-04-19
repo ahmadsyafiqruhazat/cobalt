@@ -25,12 +25,12 @@ export default [
     icon: 'UserIcon',
     i18n: 'User',
     submenu: [
-      {
-        url: '/pages/Profile',
-        name: 'Profile',
-        slug: 'app-user-profile',
-        i18n: 'Profile'
-      },
+      // {
+      //   url: '/pages/Profile',
+      //   name: 'Profile',
+      //   slug: 'app-user-profile',
+      //   i18n: 'Profile'
+      // },
       {
         url: '/apps/user/user-edit/268', //TODO: update URL to get from some id, only tutors would edit profile, but everyone can view profile
         name: 'Edit Profile',
@@ -47,7 +47,7 @@ export default [
         url: '/apps/user/user-view/268', //TODO: update URL to get from some id, this profile view is only seen by tutor
         name: 'View',
         slug: 'app-user-view',
-        i18n: 'View'
+        i18n: 'View Profile'
       }
     ]
   },
