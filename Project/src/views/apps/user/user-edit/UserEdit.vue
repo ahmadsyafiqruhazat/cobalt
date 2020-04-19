@@ -259,11 +259,19 @@ export default {
     },
     reset_data () {
       this.data_local = Object.assign({}, this.data)
+    },
+        fetch_user_data (userId) {
+      this.$store.dispatch('userManagement/fetchUser', userId)
+        .then(res => { this.user_data = res.data })
+        .catch(err => {
+          if (err.response.status === 404) {
+            this.user_not_found = true
+            return
+          }
+          console.error(err) 
+        })
     }
   },
-  methods: {
-  },
-
   created () {
     // Register Module UserManagement Module
     if (!moduleUserManagement.isRegistered) {
