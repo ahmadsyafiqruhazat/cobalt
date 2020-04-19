@@ -123,7 +123,8 @@ const router = new Router({
               { title: 'Shop', active: true }
             ],
             pageTitle: 'Shop',
-            rule: 'editor'
+            rule: 'editor',
+            role: ['user']
           }
         },
         {
@@ -137,7 +138,8 @@ const router = new Router({
               { title: 'Wish List', active: true }
             ],
             pageTitle: 'Wish List',
-            rule: 'editor'
+            rule: 'editor',
+            role: ['user']
           }
         },
         {
@@ -151,7 +153,8 @@ const router = new Router({
               { title: 'Checkout', active: true }
             ],
             pageTitle: 'Checkout',
-            rule: 'editor'
+            rule: 'editor',
+            role: ['user']
           }
         },
         /*
@@ -180,7 +183,8 @@ const router = new Router({
             ],
             parent: 'ecommerce-item-detail-view',
             pageTitle: 'Item Details',
-            rule: 'editor'
+            rule: 'editor',
+            role: ['user', 'tutor']
           }
         },
         // 
@@ -197,7 +201,8 @@ const router = new Router({
               { title: 'List', active: true }
             ],
             pageTitle: 'User List',
-            rule: 'editor'
+            rule: 'editor',
+            role: ['user', 'tutor']
           }
         },
         {
@@ -211,10 +216,11 @@ const router = new Router({
               { title: 'View', active: true }
             ],
             pageTitle: 'User View',
-            rule: 'editor'
+            rule: 'editor',
+            role: ['user', 'tutor']
           }
         },
-        {
+        { // TODO: in this case, we are assuming user to be tutor
           path: '/apps/user/user-edit/:userId',
           name: 'app-user-edit',
           component: () => import('@/views/apps/user/user-edit/UserEdit.vue'),
@@ -225,7 +231,8 @@ const router = new Router({
               { title: 'Edit', active: true }
             ],
             pageTitle: 'User Edit',
-            rule: 'editor'
+            rule: 'editor',
+            role: ['tutor']
           }
         },
         // =============================================================================
@@ -889,7 +896,8 @@ const router = new Router({
               { title: 'Profile', active: true }
             ],
             pageTitle: 'Profile',
-            rule: 'editor'
+            rule: 'editor',
+            role: ['user', 'tutor']
           }
         },
         {
@@ -903,7 +911,8 @@ const router = new Router({
               { title: 'User Settings', active: true }
             ],
             pageTitle: 'Settings',
-            rule: 'editor'
+            rule: 'editor',
+            role: ['user', 'tutor']
           }
         },
         {
@@ -1450,6 +1459,12 @@ router.beforeEach((to, from, next) => {
         router.push({ path: '/pages/login', query: { to: to.path } })
       }
     }
+
+    // // TODO: set up a check compared to firebase user role. Need to update with firebase user role
+    // // Current Roles: user, tutor
+    // if (to.meta.role !== undefined && !to.meta.role.includes(firebaseCurrentUser.role)) {
+    //   router.push({ path: from.path })
+    // }
 
     return next()
     // Specify the current path as the customState parameter, meaning it
