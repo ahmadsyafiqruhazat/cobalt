@@ -124,6 +124,7 @@ const router = new Router({
           }
         },
         {
+
           //TODO: Update to Tutors directory
           path: "/apps/tutor-directory/",
           name: "ecommerce-shop",
