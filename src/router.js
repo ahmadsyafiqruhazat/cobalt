@@ -124,6 +124,30 @@ const router = new Router({
           }
         },
         {
+          //TODO: Update to Tutors directory
+          path: "/apps/tutor-directory/",
+          name: "ecommerce-shop",
+          component: () => import("./views/apps/eCommerce/ECommerceShop.vue"),
+          meta: {
+            requiresAuth: true
+          }
+        },
+        {
+          path: "/apps/tutor-directory/:userId",
+          name: "tutor-directory-user-view",
+          component: () => import("@/views/apps/user/UserView.vue"),
+          meta: {
+            breadcrumb: [
+              { title: "Home", url: "/" },
+              { title: "User" },
+              { title: "View", active: true }
+            ],
+            pageTitle: "User View",
+            rule: "editor",
+            role: ["user", "tutor"]
+          }
+        },
+        {
           path: "/dashboard/analytics",
           name: "dashboard-analytics",
           component: () => import("./views/DashboardAnalytics.vue"),
