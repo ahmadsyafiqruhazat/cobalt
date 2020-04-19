@@ -67,11 +67,11 @@ export default {
 
   methods: {
     navigate_to_detail_view() {
+      // console.log(this.item.id);
       this.$router
         .push({
-          path: "/apps/user/user-view/",
-          name: "tutor",
-          params: { item_id: this.item.id }
+            name: 'tutor-directory-user-view',
+          params: { userId: this.item.id }
         })
         .catch(() => {});
     }

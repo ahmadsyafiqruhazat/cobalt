@@ -129,7 +129,7 @@ const router = new Router({
         },
         {
           path: '/apps/tutor-directory/:userId',
-          name: 'app-user-view',
+          name: 'tutor-directory-user-view',
           component: () => import('@/views/apps/user/UserView.vue'),
           meta: {
             breadcrumb: [
