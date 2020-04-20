@@ -75,7 +75,7 @@
           class="msg break-words relative shadow-md rounded py-3 px-4 mb-2 rounded-lg max-w-sm"
           :class="{
             'bg-primary-gradient text-white': msg.isSent,
-            'border border-solid border-transparent bg-white': !msg.isSent
+            'border border-solid border-transparent bg-white': !msg.isSent,
           }"
         >
           <span>{{ msg.textContent }}</span>
@@ -89,9 +89,9 @@
 export default {
   props: {
     userId: {
-      type: Number,
-      required: true
-    }
+      type: String,
+      required: true,
+    },
   },
   computed: {
     chatData() {
@@ -101,14 +101,14 @@ export default {
       return this.$store.state.AppActiveUser.photoURL;
     },
     senderImg() {
-      return isSentByActiveUser => {
+      return (isSentByActiveUser) => {
         if (isSentByActiveUser) return this.$store.state.AppActiveUser.photoURL;
         else return this.$store.getters["chat/contact"](this.userId).photoURL;
       };
     },
     hasSentPreviousMsg() {
       return (last_sender, current_sender) => last_sender === current_sender;
-    }
+    },
   },
   updated() {
     this.scrollToBottom();
@@ -130,7 +130,7 @@ export default {
       const locale = "en-us";
       const date_obj = new Date(Date.parse(time));
       const monthName = date_obj.toLocaleString(locale, {
-        month: "short"
+        month: "short",
       });
       return `${date_obj.getDate()} ${monthName}`;
     },
@@ -138,7 +138,7 @@ export default {
       this.$nextTick(() => {
         this.$parent.$el.scrollTop = this.$parent.$el.scrollHeight;
       });
-    }
-  }
+    },
+  },
 };
 </script>

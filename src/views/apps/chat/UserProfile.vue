@@ -97,21 +97,21 @@ import VuePerfectScrollbar from "vue-perfect-scrollbar";
 
 export default {
   components: {
-    VuePerfectScrollbar
+    VuePerfectScrollbar,
   },
   props: {
     userId: {
-      type: Number,
-      required: true
+      type: String,
+      required: true,
     },
     active: {
       type: Boolean,
-      required: true
+      required: true,
     },
     isLoggedInUser: {
       type: Boolean,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
@@ -119,8 +119,8 @@ export default {
       settings: {
         // perfectscrollbar settings
         maxScrollbarLength: 60,
-        wheelSpeed: 0.6
-      }
+        wheelSpeed: 0.6,
+      },
     };
   },
   computed: {
@@ -133,7 +133,7 @@ export default {
       },
       set(value) {
         this.$emit("closeProfileSidebar", value);
-      }
+      },
     },
     about: {
       get() {
@@ -141,7 +141,7 @@ export default {
       },
       set(value) {
         this.$store.dispatch("updateUserInfo", { about: value });
-      }
+      },
     },
     status: {
       get() {
@@ -149,7 +149,7 @@ export default {
       },
       set(value) {
         this.$store.dispatch("updateUserInfo", { status: value });
-      }
+      },
     },
     statusColor() {
       const userStatus = this.chatUser.status;
@@ -166,7 +166,7 @@ export default {
     },
     scrollbarTag() {
       return this.$store.getters.scrollbarTag;
-    }
-  }
+    },
+  },
 };
 </script>

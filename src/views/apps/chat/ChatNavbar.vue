@@ -36,7 +36,7 @@
         :svgClasses="[
           { 'text-warning stroke-current': isPinnedLocal },
           'w-6',
-          'h-6'
+          'h-6',
         ]"
         @click.stop="isPinnedLocal = !isPinnedLocal"
       ></feather-icon>
@@ -48,17 +48,17 @@
 export default {
   props: {
     userId: {
-      type: Number,
-      required: true
+      type: String,
+      required: true,
     },
     isPinnedProp: {
       type: Boolean,
-      required: true
+      required: true,
     },
     isSidebarCollapsed: {
       type: Boolean,
-      required: true
-    }
+      required: true,
+    },
   },
   computed: {
     isPinnedLocal: {
@@ -76,19 +76,19 @@ export default {
             .then(() => {
               this.$emit("toggleIsChatPinned", val);
             })
-            .catch(err => {
+            .catch((err) => {
               console.error(err);
             });
         } else {
           this.$emit("toggleIsChatPinned", val);
         }
-      }
+      },
     },
     userDetails() {
       return this.$store.getters["chat/contact"](this.userId);
     },
     getStatusColor() {
-      return isActiveUser => {
+      return (isActiveUser) => {
         const userStatus = this.getUserStatus(isActiveUser);
 
         if (userStatus === "online") {
@@ -101,14 +101,14 @@ export default {
           return "grey";
         }
       };
-    }
+    },
   },
   methods: {
     getUserStatus(isActiveUser) {
       return isActiveUser
         ? this.$store.state.AppActiveUser.status
         : this.userDetails.status;
-    }
-  }
+    },
+  },
 };
 </script>

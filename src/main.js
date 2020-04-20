@@ -14,6 +14,8 @@ import App from "./App.vue";
 import Vuesax from "vuesax";
 import "material-icons/iconfont/material-icons.css"; //Material Icons
 import "vuesax/dist/vuesax.css"; // Vuesax
+import VueSocketIO from "vue-socket.io";
+
 Vue.use(Vuesax);
 
 // axios
@@ -45,7 +47,8 @@ Vue.use(VueHammer);
 // PrismJS
 import "prismjs";
 import "prismjs/themes/prism-tomorrow.css";
-
+// Vuexy Admin Filters
+import "./filters/filters";
 // Feather font icon
 require("./assets/css/iconfont.css");
 
@@ -59,9 +62,20 @@ import VeeValidate from "vee-validate";
 Vue.use(VeeValidate);
 
 Vue.config.productionTip = false;
+Vue.use(
+  new VueSocketIO({
+    debug: true,
+    connection: "http://localhost:3000",
+    vuex: {
+      store,
+      actionPrefix: "SOCKET_",
+      mutationPrefix: "SOCKET_",
+    },
+  })
+);
 
 new Vue({
   router,
   store,
-  render: h => h(App)
+  render: (h) => h(App),
 }).$mount("#app");

@@ -6,12 +6,23 @@
   Author: Pixinvent
   Author URL: http://www.themeforest.net/user/pixinvent
 ==========================================================================================*/
+import { firestoreAction } from "vuexfire";
+import { db } from "../firebase/firebaseConfig";
 
 const actions = {
   // /////////////////////////////////////////////
   // COMPONENTS
   // /////////////////////////////////////////////
-
+  loadMessages: firestoreAction(({ state, bindFirestoreRef }) => {
+    // return the promise returned by `bindFirestoreRef`
+    return bindFirestoreRef(
+      "messages",
+      db
+        .collection("channels")
+        .doc(state.AppActiveUser.uid)
+        .collection("chat")
+    );
+  }),
   // Vertical NavMenu
   updateVerticalNavMenuWidth({ commit }, width) {
     commit("UPDATE_VERTICAL_NAV_MENU_WIDTH", width);

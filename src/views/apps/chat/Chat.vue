@@ -109,7 +109,7 @@
       class="chat__bg no-scroll-content chat-content-area border border-solid d-theme-border-grey-light border-t-0 border-r-0 border-b-0"
       :class="{
         'sidebar-spacer--wide': clickNotClose,
-        'flex items-center justify-center': activeChatUser === null
+        'flex items-center justify-center': activeChatUser === null,
       }"
     >
       <template v-if="activeChatUser">
@@ -139,7 +139,6 @@
             class="flex-1"
             placeholder="Type Your Message"
             v-model="typedMessage"
-            @keyup.enter="sendMsg"
           />
           <vs-button
             class="bg-primary-gradient ml-4"
@@ -182,7 +181,7 @@ export default {
     ChatContact,
     UserProfile,
     ChatNavbar,
-    ChatLog
+    ChatLog,
   },
   data() {
     return {
@@ -191,24 +190,25 @@ export default {
       searchContact: "",
       activeProfileSidebar: false,
       activeChatUser: null,
-      userProfileId: -1,
+      userProfileId: "",
       typedMessage: "",
       isChatPinned: false,
       settings: {
         maxScrollbarLength: 60,
-        wheelSpeed: 0.7
+        wheelSpeed: 0.7,
       },
       clickNotClose: true,
       isChatSidebarActive: true,
-      isLoggedInUserProfileView: false
+      isLoggedInUserProfileView: false,
+      currentChatId: 1,
     };
   },
   computed: {
     chatLastMessaged() {
-      return userId => this.$store.getters["chat/chatLastMessaged"](userId);
+      return (userId) => this.$store.getters["chat/chatLastMessaged"](userId);
     },
     chatUnseenMessages() {
-      return userId => {
+      return (userId) => {
         const unseenMsg = this.$store.getters["chat/chatUnseenMessages"](
           userId
         );
@@ -219,7 +219,7 @@ export default {
       return this.$store.state.AppActiveUser;
     },
     getStatusColor() {
-      return isActiveUser => {
+      return (isActiveUser) => {
         const userStatus = this.getUserStatus(isActiveUser);
 
         if (userStatus === "online") {
@@ -245,29 +245,33 @@ export default {
       },
       set(val) {
         this.$store.dispatch("chat/setChatSearchQuery", val);
-      }
+      },
     },
     scrollbarTag() {
       return this.$store.getters.scrollbarTag;
     },
     isActiveChatUser() {
-      return userId => userId === this.activeChatUser;
+      return (userId) => userId === this.activeChatUser;
     },
     windowWidth() {
       return this.$store.state.windowWidth;
-    }
+    },
   },
   watch: {
     windowWidth() {
       this.setSidebarWidth();
-    }
+    },
   },
   created() {
-    this.$store.registerModule("chat", moduleChat);
-    this.$store.dispatch("chat/fetchContacts");
-    this.$store.dispatch("chat/fetchChatContacts");
-    this.$store.dispatch("chat/fetchChats");
-    this.setSidebarWidth();
+    try {
+      this.$store.registerModule("chat", moduleChat);
+      this.$store.dispatch("chat/fetchContacts");
+      this.$store.dispatch("chat/fetchChatContacts");
+      this.$store.dispatch("chat/fetchChats");
+      this.setSidebarWidth();
+    } catch (e) {
+      console.log(e);
+    }
   },
   beforeDestroy() {
     this.$store.unregisterModule("chat");
@@ -304,16 +308,36 @@ export default {
       this.activeProfileSidebar = !this.activeProfileSidebar;
     },
     sendMsg() {
+      this.$socket.emit(
+        "createMessage",
+        {
+          textContent: this.typedMessage,
+          time: String(new Date()),
+          isSent: false,
+          isSeen: false,
+          to: this.activeChatUser,
+          from: this.activeUser.uid,
+        },
+        (data) => {
+          if (typeof data === "string") {
+            console.error(data);
+          } else {
+            this.text = "";
+          }
+        }
+      );
       if (!this.typedMessage) return;
       const payload = {
         isPinned: this.isChatPinned,
-        msg: {
-          textContent: this.typedMessage,
-          time: String(new Date()),
-          isSent: true,
-          isSeen: false
-        },
-        id: this.activeChatUser
+        msg: [
+          {
+            textContent: this.typedMessage,
+            time: String(new Date()),
+            isSent: true,
+            isSeen: false,
+          },
+        ],
+        id: this.activeChatUser,
       };
       this.$store.dispatch("chat/sendChatMessage", payload);
       this.typedMessage = "";
@@ -334,8 +358,8 @@ export default {
     toggleChatSidebar(value = false) {
       if (!value && this.clickNotClose) return;
       this.isChatSidebarActive = value;
-    }
-  }
+    },
+  },
 };
 </script>
 

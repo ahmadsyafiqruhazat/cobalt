@@ -22,14 +22,14 @@ export default {
     if (payload.chatData) {
       // If there's already chat. Push msg to existing chat
       state.chats[
-        Object.keys(state.chats).find(key => Number(key) === payload.id)
+        Object.keys(state.chats).find((key) => Number(key) === payload.id)
       ].msg.push(payload.msg);
     } else {
       // Create New chat and add msg
       const chatId = payload.id;
       Vue.set(state.chats, [chatId], {
         isPinned: payload.isPinned,
-        msg: [payload.msg]
+        msg: [payload.msg],
       });
     }
   },
@@ -42,17 +42,24 @@ export default {
   UPDATE_CHATS(state, chats) {
     state.chats = chats;
   },
+  ADD_MESSAGE(state, payload) {
+    if (state.chats[payload.id]) {
+      state.chats[payload.id].msg.push(payload.msg[0]);
+    } else {
+      state.chats[payload.id] = payload;
+    }
+  },
   SET_CHAT_SEARCH_QUERY(state, query) {
     state.chatSearchQuery = query;
   },
   MARK_SEEN_ALL_MESSAGES(state, payload) {
-    payload.chatData.msg.forEach(msg => {
+    payload.chatData.msg.forEach((msg) => {
       msg.isSeen = true;
     });
   },
   TOGGLE_IS_PINNED(state, payload) {
     state.chats[
-      Object.keys(state.chats).find(key => Number(key) === payload.id)
+      Object.keys(state.chats).find((key) => Number(key) === payload.id)
     ].isPinned = payload.value;
-  }
+  },
 };

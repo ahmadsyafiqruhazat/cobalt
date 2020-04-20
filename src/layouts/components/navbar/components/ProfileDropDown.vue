@@ -52,8 +52,8 @@
           >
             <router-link to="/chat">
               <feather-icon icon="MessageSquareIcon" svg-classes="w-4 h-4" />
+              <span class="ml-2">Chat</span>
             </router-link>
-            <span class="ml-2">Chat</span>
           </li>
 
           <li

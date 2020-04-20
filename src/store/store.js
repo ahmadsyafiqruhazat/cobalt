@@ -18,7 +18,7 @@ import actions from "./actions";
 Vue.use(Vuex);
 
 import moduleAuth from "./auth/moduleAuth.js";
-import moduleChat from "./chat/moduleChat.js";
+// import moduleChat from "./chat/moduleChat.js";
 
 export default new Vuex.Store({
   getters,
@@ -27,7 +27,6 @@ export default new Vuex.Store({
   actions,
   modules: {
     auth: moduleAuth,
-    chat: moduleChat
   },
-  strict: process.env.NODE_ENV !== "production"
+  strict: process.env.NODE_ENV !== "production",
 });
