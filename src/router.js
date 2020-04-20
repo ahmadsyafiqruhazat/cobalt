@@ -124,6 +124,14 @@ const router = new Router({
           }
         },
         {
+          path: "/chat",
+          name: "chat",
+          component: () => import("./views/apps/chat/Chat.vue"),
+          meta: {
+            requiresAuth: true
+          }
+        },
+        {
           path: "/dashboard/analytics",
           name: "dashboard-analytics",
           component: () => import("./views/DashboardAnalytics.vue"),
