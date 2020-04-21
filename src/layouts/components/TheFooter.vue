@@ -10,7 +10,7 @@
 
 <template functional>
   <footer class="the-footer flex-wrap justify-between" :class="classes">
-    <p>
+    <!-- <p>
       <span>COPYRIGHT &copy;</span>
       <span>{{ new Date().getFullYear() }} </span>
       <a
@@ -28,7 +28,7 @@
         svg-classes="stroke-current text-danger w-6 h-6"
         class="ml-2"
       />
-    </span>
+    </span> -->
   </footer>
 </template>
 
