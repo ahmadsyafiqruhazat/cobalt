@@ -17,7 +17,7 @@ export default {
     const newPayload = {
       userDetails: payload.userDetails,
       notify: payload.notify,
-      closeAnimation: payload.closeAnimation
+      closeAnimation: payload.closeAnimation,
     };
 
     // If remember_me is enabled change firebase Persistence
@@ -43,7 +43,7 @@ export default {
             text: err.message,
             iconPack: "feather",
             icon: "icon-alert-circle",
-            color: "danger"
+            color: "danger",
           });
         });
     } else {
@@ -62,7 +62,7 @@ export default {
         text: "You are already logged in!",
         iconPack: "feather",
         icon: "icon-alert-circle",
-        color: "warning"
+        color: "warning",
       });
       router.push(router.currentRoute.query.to || "/");
       return false;
@@ -77,7 +77,7 @@ export default {
       )
 
       .then(
-        result => {
+        (result) => {
           // Set FLAG username update required for updating username
           let isUsernameUpdateRequired = false;
 
@@ -91,7 +91,7 @@ export default {
               user: result.user,
               username: payload.userDetails.displayName,
               notify: payload.notify,
-              isReloadRequired: true
+              isReloadRequired: true,
             });
           }
 
@@ -104,11 +104,11 @@ export default {
           if (!isUsernameUpdateRequired) {
             router.push(router.currentRoute.query.to || "/");
             commit("UPDATE_USER_INFO", result.user.providerData[0], {
-              root: true
+              root: true,
             });
           }
         },
-        err => {
+        (err) => {
           // Close animation if passed as payload
           if (payload.closeAnimation) payload.closeAnimation();
 
@@ -118,7 +118,7 @@ export default {
             text: err.message,
             iconPack: "feather",
             icon: "icon-alert-circle",
-            color: "danger"
+            color: "danger",
           });
         }
       );
@@ -132,7 +132,7 @@ export default {
         text: "You are already logged in!",
         iconPack: "feather",
         icon: "icon-alert-circle",
-        color: "warning"
+        color: "warning",
       });
       return false;
     }
@@ -141,18 +141,18 @@ export default {
     firebase
       .auth()
       .signInWithPopup(provider)
-      .then(result => {
+      .then((result) => {
         router.push(router.currentRoute.query.to || "/");
         commit("UPDATE_USER_INFO", result.user.providerData[0], { root: true });
       })
-      .catch(err => {
+      .catch((err) => {
         payload.notify({
           time: 2500,
           title: "Error",
           text: err.message,
           iconPack: "feather",
           icon: "icon-alert-circle",
-          color: "danger"
+          color: "danger",
         });
       });
   },
@@ -165,7 +165,7 @@ export default {
         text: "You are already logged in!",
         iconPack: "feather",
         icon: "icon-alert-circle",
-        color: "warning"
+        color: "warning",
       });
       return false;
     }
@@ -174,18 +174,18 @@ export default {
     firebase
       .auth()
       .signInWithPopup(provider)
-      .then(result => {
+      .then((result) => {
         router.push(router.currentRoute.query.to || "/");
         commit("UPDATE_USER_INFO", result.user.providerData[0], { root: true });
       })
-      .catch(err => {
+      .catch((err) => {
         payload.notify({
           time: 2500,
           title: "Error",
           text: err.message,
           iconPack: "feather",
           icon: "icon-alert-circle",
-          color: "danger"
+          color: "danger",
         });
       });
   },
@@ -198,7 +198,7 @@ export default {
         text: "You are already logged in!",
         iconPack: "feather",
         icon: "icon-alert-circle",
-        color: "warning"
+        color: "warning",
       });
       return false;
     }
@@ -207,18 +207,18 @@ export default {
     firebase
       .auth()
       .signInWithPopup(provider)
-      .then(result => {
+      .then((result) => {
         router.push(router.currentRoute.query.to || "/");
         commit("UPDATE_USER_INFO", result.user.providerData[0], { root: true });
       })
-      .catch(err => {
+      .catch((err) => {
         payload.notify({
           time: 2500,
           title: "Error",
           text: err.message,
           iconPack: "feather",
           icon: "icon-alert-circle",
-          color: "danger"
+          color: "danger",
         });
       });
   },
@@ -231,7 +231,7 @@ export default {
         text: "You are already logged in!",
         iconPack: "feather",
         icon: "icon-alert-circle",
-        color: "warning"
+        color: "warning",
       });
       return false;
     }
@@ -240,18 +240,18 @@ export default {
     firebase
       .auth()
       .signInWithPopup(provider)
-      .then(result => {
+      .then((result) => {
         router.push(router.currentRoute.query.to || "/");
         commit("UPDATE_USER_INFO", result.user.providerData[0], { root: true });
       })
-      .catch(err => {
+      .catch((err) => {
         payload.notify({
           time: 2500,
           title: "Error",
           text: err.message,
           iconPack: "feather",
           icon: "icon-alert-circle",
-          color: "danger"
+          color: "danger",
         });
       });
   },
@@ -270,23 +270,23 @@ export default {
             text: "You are successfully registered!",
             iconPack: "feather",
             icon: "icon-check",
-            color: "success"
+            color: "success",
           });
 
           const newPayload = {
             userDetails: payload.userDetails,
             notify: payload.notify,
-            updateUsername: true
+            updateUsername: true,
           };
           dispatch("login", newPayload);
         },
-        error => {
+        (error) => {
           payload.notify({
             title: "Error",
             text: error.message,
             iconPack: "feather",
             icon: "icon-alert-circle",
-            color: "danger"
+            color: "danger",
           });
         }
       );
@@ -294,7 +294,7 @@ export default {
   updateUsername({ commit }, payload) {
     payload.user
       .updateProfile({
-        displayName: payload.displayName
+        displayName: payload.displayName,
       })
       .then(() => {
         // If username update is success
@@ -309,18 +309,18 @@ export default {
           router.push(router.currentRoute.query.to || "/");
         }
       })
-      .catch(err => {
+      .catch((err) => {
         payload.notify({
           time: 8800,
           title: "Error",
           text: err.message,
           iconPack: "feather",
           icon: "icon-alert-circle",
-          color: "danger"
+          color: "danger",
         });
       });
   },
-  logout({ dispatch }, payload) {
+  logout() {
     const firebaseCurrentUser = firebase.auth().currentUser;
 
     if (firebaseCurrentUser) {
@@ -332,7 +332,7 @@ export default {
         });
     }
   },
-  autoSignIn({ commit }, payload) {
+  autoSignIn() {
     router.push(router.currentRoute.query.to || "/");
-  }
+  },
 };

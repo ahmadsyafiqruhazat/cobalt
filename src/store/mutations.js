@@ -6,14 +6,25 @@
   Author: Pixinvent
   Author URL: http://www.themeforest.net/user/pixinvent
 ==========================================================================================*/
-
+//import { vuexfireMutations } from "vuexfire";
 const mutations = {
   // /////////////////////////////////////////////
   // COMPONENTS
   // /////////////////////////////////////////////
 
   // Vertical NavMenu
-
+  // ...vuexfireMutations,
+  SOCKET_newMessage(state, message) {
+    if (state.AppActiveUser.uid === message.to) {
+      if (state.chat.chats[message.from]) {
+        let temp = { ...state.chat.chats[message.from] };
+        temp.msg.push(message);
+        state.chat.chats[message.from] = temp;
+      } else {
+        state.chat.chats[message.from] = { isPinned: false, msg: [message] };
+      }
+    }
+  },
   TOGGLE_IS_VERTICAL_NAV_MENU_ACTIVE(state, value) {
     state.isVerticalNavMenuActive = value;
   },
@@ -35,7 +46,7 @@ const mutations = {
   UPDATE_STARRED_PAGE(state, payload) {
     // find item index in search list state
     const index = state.navbarSearchAndPinList["pages"].data.findIndex(
-      item => item.url == payload.url
+      (item) => item.url == payload.url
     );
 
     // update the main list
@@ -50,7 +61,7 @@ const mutations = {
     } else {
       // find item index from starred pages
       const index = state.starredPages.findIndex(
-        item => item.url == payload.url
+        (item) => item.url == payload.url
       );
 
       // remove item using index
@@ -70,7 +81,7 @@ const mutations = {
     const starredPagesLimited = state.starredPages.slice(0, 10);
     state.starredPages = starredPagesLimited.concat(list);
 
-    state.starredPages.slice(0, 10).map(i => {
+    state.starredPages.slice(0, 10).map((i) => {
       if (list.indexOf(i) > -1) downToUp = true;
     });
 
@@ -120,7 +131,7 @@ const mutations = {
     }
     // Store data in localStorage
     localStorage.setItem("userInfo", JSON.stringify(userInfo));
-  }
+  },
 };
 
 export default mutations;

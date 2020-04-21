@@ -2,7 +2,7 @@
 // Please use your own firebase details below. For more details visit: https://pixinvent.com/demo/vuexy-vuejs-admin-dashboard-template/documentation/development/firebaseIntegration.html
 
 import firebase from "firebase/app";
-
+import 'firebase/firestore'
 // Initialize Firebase
 const config = {
   apiKey: "AIzaSyBkTZDNl_gZh5LFe9yT0qHL-Ss_iUugYZE",
@@ -15,4 +15,7 @@ const config = {
   measurementId: "G-P1NJ7RWT6Z"
 };
 
-firebase.initializeApp(config);
+export const db = firebase.initializeApp(config).firestore();
+const { TimeStamp, GeoPoint } = firebase.firestore;
+export { TimeStamp, GeoPoint };
+

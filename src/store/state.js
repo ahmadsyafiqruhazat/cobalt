@@ -23,15 +23,17 @@ const userDefaults = {
     "Dessert chocolate cake lemon drops jujubes. Biscuit cupcake ice cream bear claw brownie brownie marshmallow.",
   photoURL: require("@/assets/images/portrait/small/avatar-s-11.jpg"), // From Auth
   status: "online",
-  userRole: "admin"
+  userRole: "admin",
 };
+const userInfoLocalStorage = JSON.parse(localStorage.getItem("userInfo")) || {};
+
 // Set default values for active-user
 // More data can be added by auth provider or other plugins/packages
 const getUserInfo = () => {
   const userInfo = {};
 
   // Update property in user
-  Object.keys(userDefaults).forEach(key => {
+  Object.keys(userDefaults).forEach((key) => {
     // If property is defined in localStorage => Use that
     userInfo[key] = userInfoLocalStorage[key]
       ? userInfoLocalStorage[key]
@@ -39,7 +41,7 @@ const getUserInfo = () => {
   });
 
   // Include properties from localStorage
-  Object.keys(userInfoLocalStorage).forEach(key => {
+  Object.keys(userInfoLocalStorage).forEach((key) => {
     if (userInfo[key] === undefined && userInfoLocalStorage[key] !== null)
       userInfo[key] = userInfoLocalStorage[key];
   });
@@ -70,7 +72,7 @@ const is_touch_device = () => {
 // /////////////////////////////////////////////
 
 const state = {
-  AppActiveUser: userDefaults,
+  AppActiveUser: getUserInfo(),
   bodyOverlay: false,
   isVerticalNavMenuActive: true,
   is_touch_device: is_touch_device(),
@@ -81,14 +83,15 @@ const state = {
   verticalNavMenuItemsMin: false,
   scrollY: 0,
   starredPages: navbarSearchAndPinList["pages"].data.filter(
-    page => page.is_bookmarked
+    (page) => page.is_bookmarked
   ),
   theme: themeConfig.theme || "light",
   themePrimaryColor: colors.primary,
 
   // Can be used to get current window with
   // Note: Above breakpoint state is for internal use of sidebar & navbar component
-  windowWidth: null
+  windowWidth: null,
+  // chat: []
 };
 
 export default state;

@@ -133,6 +133,14 @@ const router = new Router({
           }
         },
         {
+          path: "/chat",
+          name: "chat",
+          component: () => import("./views/apps/chat/Chat.vue"),
+          meta: {
+            requiresAuth: true
+          }
+        },
+        {
           path: "/apps/tutor-directory/:userId",
           name: "tutor-directory-user-view",
           component: () => import("@/views/apps/user/UserView.vue"),
