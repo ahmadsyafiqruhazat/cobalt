@@ -109,6 +109,7 @@
             </div>
           </div>
         </div>
+        
       </calendar-view>
     </div>
 
@@ -189,14 +190,14 @@
           name="end-date"
         ></datepicker>
       </div>
-      <vs-input
+      <!-- <vs-input
         v-model="url"
         v-validate="'url'"
         name="event-url"
         class="w-full mt-6"
         label-placeholder="Event URL"
         :color="!errors.has('event-url') ? 'success' : 'danger'"
-      ></vs-input>
+      ></vs-input> -->
     </vs-prompt>
 
     <!-- EDIT EVENT -->
@@ -274,14 +275,14 @@
           name="end-date"
         ></datepicker>
       </div>
-      <vs-input
+      <!-- <vs-input
         v-model="url"
         v-validate="'url'"
         name="event-url"
         class="w-full mt-6"
         label-placeholder="Event URL"
         :color="!errors.has('event-url') ? 'success' : 'danger'"
-      ></vs-input>
+      ></vs-input> -->
     </vs-prompt>
   </div>
 </template>
@@ -338,6 +339,7 @@ export default {
   },
   computed: {
     simpleCalendarEvents() {
+      console.log(this.$store.state.calendar.events);
       return this.$store.state.calendar.events;
     },
     validForm() {
@@ -385,7 +387,7 @@ export default {
         startDate: this.startDate,
         endDate: this.endDate,
         label: this.labelLocal,
-        url: this.url
+        // url: this.url
       };
       obj.classes = `event-${this.labelColor(this.labelLocal)}`;
       this.$store.dispatch("calendar/addEvent", obj);
