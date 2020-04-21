@@ -66,7 +66,7 @@ const router = new Router({
               { title: "Profile", active: true }
             ],
             pageTitle: "Profile",
-            // rule: "editor"
+            rule: "editor",
             requiresAuth: true
           }
         },
@@ -81,7 +81,7 @@ const router = new Router({
               { title: "List", active: true }
             ],
             pageTitle: "User List",
-            // rule: "editor"
+            rule: "editor",
             requiresAuth: true
           }
         },
@@ -96,7 +96,7 @@ const router = new Router({
               { title: "View", active: true }
             ],
             pageTitle: "User View",
-            // rule: "editor"
+            rule: "editor",
             requiresAuth: true
           }
         },
@@ -111,7 +111,7 @@ const router = new Router({
               { title: "Edit", active: true }
             ],
             pageTitle: "User Edit",
-            // rule: "editor"
+            rule: "editor",
             requiresAuth: true
           }
         },
@@ -119,6 +119,15 @@ const router = new Router({
           path: "/directory",
           name: "directory",
           component: () => import("./views/Directory.vue"),
+          meta: {
+            requiresAuth: true
+          }
+        },
+        {
+          //TODO: Update to Tutors directory
+          path: "/apps/tutor-directory/",
+          name: "ecommerce-shop",
+          component: () => import("./views/apps/eCommerce/ECommerceShop.vue"),
           meta: {
             requiresAuth: true
           }
@@ -132,12 +141,27 @@ const router = new Router({
           }
         },
         {
+          path: "/apps/tutor-directory/:userId",
+          name: "tutor-directory-user-view",
+          component: () => import("@/views/apps/user/UserView.vue"),
+          meta: {
+            breadcrumb: [
+              { title: "Home", url: "/" },
+              { title: "User" },
+              { title: "View", active: true }
+            ],
+            pageTitle: "User View",
+            rule: "editor",
+            role: ["user", "tutor"]
+          }
+        },
+        {
           path: "/dashboard/analytics",
           name: "dashboard-analytics",
           component: () => import("./views/DashboardAnalytics.vue"),
           meta: {
-            requiresAuth: true
-            // rule: "admin"
+            requiresAuth: true,
+            rule: "admin"
           }
         },
         {
@@ -145,8 +169,8 @@ const router = new Router({
           name: "dashboard-ecommerce",
           component: () => import("./views/DashboardECommerce.vue"),
           meta: {
-            requiresAuth: true
-            // rule: "admin"
+            requiresAuth: true,
+            rule: "admin"
           }
         }
       ]
@@ -192,8 +216,14 @@ router.beforeEach((to, from, next) => {
 
   if (requiresAuth && !isLoggedIn) next({ name: "page-login" });
   else if (!requiresAuth && isLoggedIn) next({ name: "home" });
+  // TODO: set up a check compared to firebase user role. Need to update with firebase user role
+  // Current Roles: user, tutor
+  // else if (to.meta.role !== undefined && !to.meta.role.includes(firebaseCurrentUser.role)) {
+  //   router.push({ path: from.path })
+  // }
   else next();
 });
+
 router.afterEach(() => {
   // Remove initial loading
   const appLoading = document.getElementById("loading-bg");

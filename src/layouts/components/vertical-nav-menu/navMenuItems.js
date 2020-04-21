@@ -14,37 +14,37 @@ export default [
     slug: "home",
     icon: "HomeIcon"
   },
-  {
-    url: "/directory",
-    name: "Directory",
-    slug: "directory",
-    icon: "DirectoryIcon"
-    // TODO: update icon
-  },
+  // {
+  //   url: "/directory",
+  //   name: "Directory",
+  //   slug: "directory",
+  //   icon: "DirectoryIcon"
+  //   // TODO: update icon
+  // },
   {
     url: null,
     name: "User",
     icon: "UserIcon",
     i18n: "User",
     submenu: [
-      {
-        url: "/pages/Profile",
-        name: "Profile",
-        slug: "app-user-profile",
-        i18n: "Profile"
-      },
+      // {
+      //   url: "/pages/Profile",
+      //   name: "Profile",
+      //   slug: "app-user-profile",
+      //   i18n: "Profile"
+      // },
       {
         url: "/apps/user/user-edit/268",
         name: "Edit Profile",
         slug: "app-user-edit",
         i18n: "Edit Profile"
       },
-      {
-        url: "/apps/user/user-list",
-        name: "List",
-        slug: "app-user-list",
-        i18n: "List"
-      },
+      // {
+      //   url: "/apps/user/user-list",
+      //   name: "List",
+      //   slug: "app-user-list",
+      //   i18n: "List"
+      // },
       {
         url: "/apps/user/user-view/268",
         name: "View",
@@ -54,25 +54,30 @@ export default [
     ]
   },
   {
-    url: null,
-    name: "Dashboard",
-    tag: "2",
-    tagColor: "warning",
-    icon: "HomeIcon",
-    i18n: "Dashboard",
-    submenu: [
-      {
-        url: "/dashboard/analytics",
-        name: "Analytics",
-        slug: "dashboard-analytics",
-        i18n: "Analytics"
-      },
-      {
-        url: "/dashboard/ecommerce",
-        name: "eCommerce",
-        slug: "dashboard-ecommerce",
-        i18n: "eCommerce"
-      }
-    ]
+    url: "/apps/tutor-directory/",
+    name: "Tutors Directory",
+    slug: "tutors-directory"
   }
+  // {
+  //   url: null,
+  //   name: "Dashboard",
+  //   tag: "2",
+  //   tagColor: "warning",
+  //   icon: "HomeIcon",
+  //   i18n: "Dashboard",
+  //   submenu: [
+  //     {
+  //       url: "/dashboard/analytics",
+  //       name: "Analytics",
+  //       slug: "dashboard-analytics",
+  //       i18n: "Analytics"
+  //     },
+  //     {
+  //       url: "/dashboard/ecommerce",
+  //       name: "eCommerce",
+  //       slug: "dashboard-ecommerce",
+  //       i18n: "eCommerce"
+  //     }
+  //   ]
+  // }
 ];
