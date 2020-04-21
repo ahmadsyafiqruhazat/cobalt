@@ -8,6 +8,7 @@
 ==========================================================================================*/
 
 import { db } from "../../firebase/firebaseConfig";
+import axios from "../../http/axios/index.js";
 
 export default {
   setChatSearchQuery({ commit }, query) {
@@ -62,47 +63,25 @@ export default {
   },
 
   // Get contacts from server. Also change in store
-  fetchContacts({ commit }) {
-    commit("UPDATE_CONTACTS", [
-      {
-        uid: "demo@demo.com",
-        displayName: "Felecia Rower",
-        about:
-          "Cake pie jelly jelly beans. Marzipan lemon drops halvah cake. Pudding cookie lemon drops icing",
-        photoURL: require("@/assets/images/portrait/small/avatar-s-1.jpg"),
-        status: "offline",
-      },
-      {
-        uid: "ahmadsyafiqruhazat@gmail.com",
-        displayName: "Adalberto Granzin",
-        about:
-          "Toffee caramels jelly-o tart gummi bears cake I love ice cream lollipop. Sweet liquorice croissant candy danish dessert icing. Cake macaroon gingerbread toffee sweet.",
-        photoURL: require("@/assets/images/portrait/small/avatar-s-2.jpg"),
-        status: "do not disturb",
-      },
-    ]);
+  async fetchContacts({ commit }) {
+    const result = await axios.get("/profile");
+    result.data.forEach(contact => {
+      contact.uid = contact.email;
+      contact.status = "online";
+      contact.photoURL = contact.photoURL ? contact.photoURL : require("@/assets/images/portrait/small/avatar-s-1.jpg");
+    })
+    commit("UPDATE_CONTACTS", result.data);
   },
 
   // Get chat-contacts from server. Also change in store
-  fetchChatContacts({ commit }) {
-    commit("UPDATE_CHAT_CONTACTS", [
-      {
-        uid: "demo@demo.com",
-        displayName: "Felecia Rower",
-        about:
-          "Cake pie jelly jelly beans. Marzipan lemon drops halvah cake. Pudding cookie lemon drops icing",
-        photoURL: require("@/assets/images/portrait/small/avatar-s-1.jpg"),
-        status: "offline",
-      },
-      {
-        uid: "ahmadsyafiqruhazat@gmail.com",
-        displayName: "Adalberto Granzin",
-        about:
-          "Toffee caramels jelly-o tart gummi bears cake I love ice cream lollipop. Sweet liquorice croissant candy danish dessert icing. Cake macaroon gingerbread toffee sweet.",
-        photoURL: require("@/assets/images/portrait/small/avatar-s-2.jpg"),
-        status: "do not disturb",
-      },
-    ]);
+  async fetchChatContacts({ commit }) {
+    const result = await axios.get("/profile");
+    result.data.forEach(contact => {
+      contact.uid = contact.email;
+      contact.status = "online";
+      contact.photoURL = contact.photoURL ? contact.photoURL : require("@/assets/images/portrait/small/avatar-s-1.jpg");
+    })
+    commit("UPDATE_CHAT_CONTACTS", result.data);
   },
 
   // Get chats from server. Also change in store
