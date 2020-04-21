@@ -314,7 +314,6 @@ export default {
       this.data_local = Object.assign({}, this.data);
     }
   },
-  methods: {}
 };
 </script>
 

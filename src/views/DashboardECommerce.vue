@@ -362,6 +362,7 @@
 </template>
 
 <script>
+/* eslint-disable no-unused-vars */
 import VuePerfectScrollbar from "vue-perfect-scrollbar";
 import VueApexCharts from "vue-apexcharts";
 import StatisticsCardLine from "@/components/statistics-cards/StatisticsCardLine.vue";

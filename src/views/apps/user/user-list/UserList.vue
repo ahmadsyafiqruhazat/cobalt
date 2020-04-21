@@ -192,6 +192,7 @@
 </template>
 
 <script>
+/* eslint-disable no-unused-vars */
 import { AgGridVue } from "ag-grid-vue";
 import "@/assets/scss/vuexy/extraComponents/agGridStyleOverride.scss";
 import vSelect from "vue-select";
