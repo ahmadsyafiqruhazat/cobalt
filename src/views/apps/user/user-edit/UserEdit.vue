@@ -21,7 +21,7 @@
         <!-- Avatar -->
         <div class="vx-row">
           <!-- Avatar Col -->
-          <div id="avatar-col" class="vx-col">
+          <!-- <div id="avatar-col" class="vx-col">
             <div class="img-container mb-4">
               <img :src="user_data.avatar" class="rounded w-full" />
               <input
@@ -38,20 +38,16 @@
                 >Change Avatar
               </vs-button>
             </div>
-          </div>
+          </div> -->
 
           <!-- Information - Col 1 -->
           <div id="account-info-col-1" class="vx-col flex-1">
             <table>
               <tr>
-                <td class="font-semibold">Username</td>
-                <td>{{ user_data.username }}</td>
-              </tr>
-              <tr>
                 <td class="font-semibold">Tutor's Name</td>
                 <vs-input
-                  v-model="user_data.name"
-                  v-validate="'required|alpha_num'"
+                  v-model="user_data.displayName"
+                  v-validate="'required'"
                   name="name"
                 />
                 <span v-show="errors.has('name')" class="text-danger text-sm">{{
@@ -138,7 +134,7 @@
               <tr>
                 <td class="font-semibold">Mobile</td>
                 <vs-input
-                  v-model="user_data.mobile"
+                  v-model="user_data.phoneNumber"
                   v-validate="{ regex: '^\\+?([0-9]+)$' }"
                   class="w-full mt-4"
                   name="mobile"
@@ -167,7 +163,7 @@
       <vx-card title="My Lessons" class="mb-base">
         <table>
           <v-select
-            v-model="user_data.subjectlist"
+            v-model="user_data.lessons"
             v-validate="'required'"
             multiple
             :close-on-select="false"
@@ -276,7 +272,7 @@ export default {
   },
   watch: {
     activeTab() {
-      this.fetch_user_data(this.$route.params.userId);
+      this.fetch_user_data(this.$store.state.AppActiveUser.uid);
     }
   },
 
@@ -286,10 +282,11 @@ export default {
       this.$store.registerModule("userManagement", moduleUserManagement);
       moduleUserManagement.isRegistered = true;
     }
-    const userId = this.$route.params.userId;
+    const userId = this.$store.state.AppActiveUser.uid
     this.$store
       .dispatch("userManagement/fetchUser", userId)
       .then(res => {
+        res.data.languages_known = res.data.languages_known ? res.data.languages_known.split(",") : [];
         this.user_data = res.data;
       })
       .catch(err => {
@@ -302,13 +299,17 @@ export default {
   },
   methods: {
     save_changes() {
-      /* eslint-disable */
+
       if (!this.validateForm) return;
-
-      // Here will go your API call for updating data
-      // You can get data in "this.data_local"
-
-      /* eslint-enable */
+      this.$store
+        .dispatch("userManagement/updateUser", this.user_data)
+        .then(() => console.log("user updated"))
+      .catch(err => {
+        if (err.response.status === 404) {
+          console.log(err);
+          return;
+        }
+      });
     },
     reset_data() {
       this.data_local = Object.assign({}, this.data);

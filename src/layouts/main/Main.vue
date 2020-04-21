@@ -19,7 +19,7 @@
   >
     <v-nav-menu
       :nav-menu-items="navMenuItems"
-      title="Vuexy"
+      title="FindMyTeacher"
       parent=".layout--main"
     />
 
@@ -106,32 +106,6 @@
                           svg-classes="w-4 h-4"
                         />
                         <span>Profile</span>
-                      </div>
-                    </vs-dropdown-item>
-                    <vs-dropdown-item>
-                      <div
-                        class="flex items-center"
-                        @click="$router.push('/apps/todo').catch(() => {})"
-                      >
-                        <feather-icon
-                          icon="CheckSquareIcon"
-                          class="inline-block mr-2"
-                          svg-classes="w-4 h-4"
-                        />
-                        <span>Tasks</span>
-                      </div>
-                    </vs-dropdown-item>
-                    <vs-dropdown-item>
-                      <div
-                        class="flex items-center"
-                        @click="$router.push('/apps/email').catch(() => {})"
-                      >
-                        <feather-icon
-                          icon="MailIcon"
-                          class="inline-block mr-2"
-                          svg-classes="w-4 h-4"
-                        />
-                        <span>Inbox</span>
                       </div>
                     </vs-dropdown-item>
                   </vs-dropdown-menu>

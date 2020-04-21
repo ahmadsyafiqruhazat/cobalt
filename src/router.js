@@ -86,7 +86,7 @@ const router = new Router({
           }
         },
         {
-          path: "/apps/user/user-view/:userId",
+          path: "/apps/user/user-view",
           name: "app-user-view",
           component: () => import("@/views/apps/user/UserView.vue"),
           meta: {
@@ -101,7 +101,7 @@ const router = new Router({
           }
         },
         {
-          path: "/apps/user/user-edit/:userId",
+          path: "/apps/user/user-edit",
           name: "app-user-edit",
           component: () => import("@/views/apps/user/user-edit/UserEdit.vue"),
           meta: {

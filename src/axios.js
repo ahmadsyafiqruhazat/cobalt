@@ -1,9 +1,9 @@
 // axios
 import axios from "axios";
 
-const baseURL = "";
+const baseURL = "http://localhost:8080";
 
 export default axios.create({
-  baseURL: baseURL
+  baseURL: baseURL,
   // You can add your headers here
 });

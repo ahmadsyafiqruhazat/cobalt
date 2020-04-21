@@ -74,7 +74,7 @@ export default {
   },
   watch: {
     activeTab () {
-      this.fetch_user_data(this.$route.params.userId)
+      this.fetch_user_data(this.$store.state.AppActiveUser.uid)
     }
   },
   methods: {
@@ -96,7 +96,7 @@ export default {
       this.$store.registerModule('userManagement', moduleUserManagement)
       moduleUserManagement.isRegistered = true
     }
-    this.fetch_user_data(this.$route.params.userId)
+    this.fetch_user_data(this.$store.state.AppActiveUser.uid)
   }
 }
 

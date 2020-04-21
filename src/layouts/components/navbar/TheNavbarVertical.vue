@@ -23,13 +23,7 @@
           @click.stop="showSidebar"
         />
 
-        <bookmarks v-if="windowWidth >= 992" :navbar-color="navbarColor" />
-
         <vs-spacer />
-
-        <search-bar />
-
-        <notification-drop-down />
 
         <profile-drop-down />
       </vs-navbar>
@@ -38,17 +32,11 @@
 </template>
 
 <script>
-import Bookmarks from "./components/Bookmarks.vue";
-import SearchBar from "./components/SearchBar.vue";
-import NotificationDropDown from "./components/NotificationDropDown.vue";
 import ProfileDropDown from "./components/ProfileDropDown.vue";
 
 export default {
   name: "TheNavbarVertical",
   components: {
-    Bookmarks,
-    SearchBar,
-    NotificationDropDown,
     ProfileDropDown
   },
   props: {
