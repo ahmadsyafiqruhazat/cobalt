@@ -28,10 +28,6 @@
           <span class="vx-logo-text text-primary">FindMyTeacher</span>
         </router-link>
 
-        <search-bar />
-
-        <notification-drop-down />
-
         <profile-drop-down />
       </vs-navbar>
     </div>
@@ -40,8 +36,6 @@
 
 <script>
 import Bookmarks from "./components/Bookmarks.vue";
-import SearchBar from "./components/SearchBar.vue";
-import NotificationDropDown from "./components/NotificationDropDown.vue";
 import ProfileDropDown from "./components/ProfileDropDown.vue";
 import Logo from "../Logo.vue";
 
@@ -50,8 +44,6 @@ export default {
   components: {
     Logo,
     Bookmarks,
-    SearchBar,
-    NotificationDropDown,
     ProfileDropDown
   },
   props: {
