@@ -34,7 +34,7 @@ export default [
       //   i18n: "Profile"
       // },
       {
-        url: "/apps/user/user-edit/268",
+        url: "/apps/user/user-edit",
         name: "Edit Profile",
         slug: "app-user-edit",
         i18n: "Edit Profile"
@@ -46,7 +46,7 @@ export default [
       //   i18n: "List"
       // },
       {
-        url: "/apps/user/user-view/268",
+        url: "/apps/user/user-view",
         name: "View",
         slug: "app-user-view",
         i18n: "View"

@@ -40,12 +40,8 @@
           <div id="account-info-col-1" class="vx-col flex-1">
             <table>
               <tr>
-                <td class="font-semibold">Username</td>
-                <td>{{ user_data.username }}</td>
-              </tr>
-              <tr>
                 <td class="font-semibold">Tutor's Name</td>
-                <td>{{ user_data.name }}</td>
+                <td>{{ user_data.displayName }}</td>
               </tr>
               <tr>
                 <td class="font-semibold">Gender</td>
@@ -59,7 +55,7 @@
 
               <tr>
                 <td class="font-semibold">Languages</td>
-                <td>{{ user_data.languages_known.join(", ") }}</td>
+                <td>{{ languages }}</td>
               </tr>
             </table>
           </div>
@@ -75,7 +71,7 @@
               </tr>
               <tr>
                 <td class="font-semibold">Mobile</td>
-                <td>{{ user_data.mobile }}</td>
+                <td>{{ user_data.phoneNumber }}</td>
               </tr>
             </table>
           </div>
@@ -94,7 +90,7 @@
       <vx-card title="My Lessons" class="mb-base">
         <table>
           <tr>
-            <td v-for="subject in user_data.subjectlist" :key="subject">
+            <td v-for="subject in user_data.lessons" :key="subject">
               {{ subject }}
             </td>
           </tr>
@@ -194,13 +190,16 @@ export default {
     };
   },
   computed: {
+    languages() {
+      return this.user_data.languages_known? this.user_data.languages_known.join(", ") : "English";
+    },
     userAddress() {
       let str = "";
       for (const field in this.user_data.location) {
         str += `${field} `;
       }
       return str;
-    }
+    },
   },
   created() {
     // Register Module UserManagement Module
@@ -209,10 +208,11 @@ export default {
       moduleUserManagement.isRegistered = true;
     }
 
-    const userId = this.$route.params.userId;
+    const userId = this.$store.state.AppActiveUser.uid
     this.$store
       .dispatch("userManagement/fetchUser", userId)
       .then(res => {
+        res.data.languages_known = res.data.languages_known ? res.data.languages_known.split(",") : [];
         this.user_data = res.data;
       })
       .catch(err => {

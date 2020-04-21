@@ -7,8 +7,7 @@
   Author URL: http://www.themeforest.net/user/pixinvent
 ==========================================================================================*/
 
-import axios from "@/axios.js";
-
+import axios from "../../http/axios/index.js";
 export default {
   // addItem({ commit }, item) {
   //   return new Promise((resolve, reject) => {
@@ -23,7 +22,7 @@ export default {
   fetchUsers({ commit }) {
     return new Promise((resolve, reject) => {
       axios
-        .get("/api/user-management/users")
+        .get("/profile")
         .then(response => {
           commit("SET_USERS", response.data);
           resolve(response);
@@ -36,7 +35,7 @@ export default {
   fetchUser(context, userId) {
     return new Promise((resolve, reject) => {
       axios
-        .get(`/api/user-management/users/${userId}`)
+        .get(`/profile/${userId}`)
         .then(response => {
           resolve(response);
         })
@@ -48,7 +47,7 @@ export default {
   removeRecord({ commit }, userId) {
     return new Promise((resolve, reject) => {
       axios
-        .delete(`/api/user-management/users/${userId}`)
+        .delete(`/profile/${userId}`)
         .then(response => {
           commit("REMOVE_RECORD", userId);
           resolve(response);
@@ -57,5 +56,19 @@ export default {
           reject(error);
         });
     });
-  }
+  },
+  updateUser({rootState}, payload) {
+    let data = { ...payload };
+    data.languages_known = payload.languages_known.map(l => l.label ? l.label : l).join(",");
+    return new Promise((resolve, reject) => {
+      axios
+        .put(`/profile/${rootState.AppActiveUser.uid}`, data)
+        .then(response => {
+          resolve(response);
+        })
+        .catch(error => {
+          reject(error);
+        });
+    });
+  },
 };
