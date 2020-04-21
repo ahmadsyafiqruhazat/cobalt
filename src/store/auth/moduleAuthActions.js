@@ -10,7 +10,7 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 import router from "@/router";
-
+import axios from "../../http/axios/index.js";
 export default {
   loginAttempt({ dispatch }, payload) {
     // New payload for login action
@@ -89,7 +89,7 @@ export default {
 
             dispatch("updateUsername", {
               user: result.user,
-              username: payload.userDetails.displayName,
+              displayName: payload.userDetails.displayName,
               notify: payload.notify,
               isReloadRequired: true,
             });
@@ -255,41 +255,46 @@ export default {
         });
       });
   },
-  registerUser({ dispatch }, payload) {
-    // create user using firebase
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(
-        payload.userDetails.email,
-        payload.userDetails.password
-      )
-      .then(
-        () => {
-          payload.notify({
-            title: "Account Created",
-            text: "You are successfully registered!",
-            iconPack: "feather",
-            icon: "icon-check",
-            color: "success",
-          });
+  async registerUser({ dispatch }, payload) {
+    // create user using firebase]
+    try {
+      await firebase
+        .auth()
+        .createUserWithEmailAndPassword(
+          payload.userDetails.email,
+          payload.userDetails.password
+        );
+      await axios.post("/profile", payload.userDetails);
+      payload.notify({
+        title: "Account Created",
+        text: "You are successfully registered!",
+        iconPack: "feather",
+        icon: "icon-check",
+        color: "success",
+      });
 
-          const newPayload = {
-            userDetails: payload.userDetails,
-            notify: payload.notify,
-            updateUsername: true,
-          };
-          dispatch("login", newPayload);
-        },
-        (error) => {
-          payload.notify({
-            title: "Error",
-            text: error.message,
-            iconPack: "feather",
-            icon: "icon-alert-circle",
-            color: "danger",
-          });
-        }
-      );
+      const newPayload = {
+        userDetails: payload.userDetails,
+        notify: payload.notify,
+        updateUsername: true,
+      };
+      const firebaseCurrentUser = firebase.auth().currentUser;
+
+      if (firebaseCurrentUser) {
+        await firebase.auth().signOut();
+        dispatch("login", newPayload);
+      } else {
+        dispatch("login", newPayload);
+      }
+    } catch (error) {
+      payload.notify({
+        title: "Error",
+        text: error.message,
+        iconPack: "feather",
+        icon: "icon-alert-circle",
+        color: "danger",
+      });
+    }
   },
   updateUsername({ commit }, payload) {
     payload.user

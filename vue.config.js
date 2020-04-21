@@ -13,8 +13,11 @@ module.exports = {
   configureWebpack: {
     optimization: {
       splitChunks: {
-        chunks: "all"
-      }
-    }
-  }
+        chunks: "all",
+      },
+    },
+  },
+  devServer: {
+    proxy: "http://localhost:3000",
+  },
 };

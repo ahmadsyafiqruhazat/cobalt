@@ -4,7 +4,7 @@ var server = require("http").Server(app);
 var io = require("socket.io")(server);
 var dateFormat = require("dateformat");
 
-app.set("port", process.env.PORT || 3000);
+app.set("port", process.env.PORT || 4000);
 app.use(express.static("app"));
 
 server.listen(app.get("port"), function() {

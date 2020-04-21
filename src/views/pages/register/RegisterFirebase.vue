@@ -1,7 +1,7 @@
 <template>
   <div class="clearfix">
     <vs-input
-      v-validate="'required|alpha_dash|min:3'"
+      v-validate="'required'"
       data-vv-validate-on="blur"
       label-placeholder="Name"
       name="displayName"
@@ -10,6 +10,50 @@
       class="w-full"
     />
     <span class="text-danger text-sm">{{ errors.first("displayName") }}</span>
+
+    <vs-input
+      v-validate="'required'"
+      data-vv-validate-on="blur"
+      label-placeholder="Student or Tutor?"
+      name="role"
+      placeholder="Student or Tutor?"
+      v-model="role"
+      class="w-full"
+    />
+    <span class="text-danger text-sm">{{ errors.first("role") }}</span>
+
+    <vs-input
+      v-validate="'required|alpha_dash|min:3'"
+      data-vv-validate-on="blur"
+      label-placeholder="Gender"
+      name="gender"
+      placeholder="Gender"
+      v-model="gender"
+      class="w-full"
+    />
+    <span class="text-danger text-sm">{{ errors.first("gender") }}</span>
+
+    <vs-input
+      v-validate="'required'"
+      data-vv-validate-on="blur"
+      label-placeholder="Lessons"
+      name="lessons"
+      placeholder="Lessons"
+      v-model="lessons"
+      class="w-full"
+    />
+    <span class="text-danger text-sm">{{ errors.first("lessons") }}</span>
+
+    <vs-input
+      v-validate="'required|alpha_dash|min:3'"
+      data-vv-validate-on="blur"
+      label-placeholder="Phone Number"
+      name="phoneNumber"
+      placeholder="Phone Number"
+      v-model="phoneNumber"
+      class="w-full"
+    />
+    <span class="text-danger text-sm">{{ errors.first("phoneNumber") }}</span>
 
     <vs-input
       v-validate="'required|email'"
@@ -72,7 +116,11 @@ export default {
       email: "",
       password: "",
       confirm_password: "",
-      isTermsConditionAccepted: true
+      isTermsConditionAccepted: true,
+      role: "",
+      gender: "",
+      lessons: "",
+      phoneNumber: "",
     };
   },
   computed: {
@@ -83,9 +131,13 @@ export default {
         this.email !== "" &&
         this.password !== "" &&
         this.confirm_password !== "" &&
-        this.isTermsConditionAccepted === true
+        this.isTermsConditionAccepted === true &&
+        this.role !== "" &&
+        this.gender !== "" &&
+        this.lessons !== "" &&
+        this.phoneNumber !== ""
       );
-    }
+    },
   },
   methods: {
     checkLogin() {
@@ -99,7 +151,7 @@ export default {
           text: "You are already logged in!",
           iconPack: "feather",
           icon: "icon-alert-circle",
-          color: "warning"
+          color: "warning",
         });
 
         return false;
@@ -115,12 +167,16 @@ export default {
           displayName: this.displayName,
           email: this.email,
           password: this.password,
-          confirmPassword: this.confirm_password
+          confirmPassword: this.confirm_password,
+          role: this.role,
+          gender: this.gender,
+          lessons: this.lessons !== "" && this.lessons.split(","),
+          phoneNumber: this.phoneNumber,
         },
-        notify: this.$vs.notify
+        notify: this.$vs.notify,
       };
       this.$store.dispatch("auth/registerUser", payload);
-    }
-  }
+    },
+  },
 };
 </script>
