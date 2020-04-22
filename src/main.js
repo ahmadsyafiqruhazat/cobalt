@@ -65,7 +65,7 @@ Vue.config.productionTip = false;
 Vue.use(
   new VueSocketIO({
     debug: true,
-    connection: "http://localhost:4000",
+    connection: "http://ec2-54-179-165-184.ap-southeast-1.compute.amazonaws.com:4000",
     vuex: {
       store,
       actionPrefix: "SOCKET_",
