@@ -1,7 +1,7 @@
 // axios
 import axios from "axios";
 
-const baseURL = "http://ec2-54-179-165-184.ap-southeast-1.compute.amazonaws.com:3000";
+const baseURL = "https://us-central1-cs5224-cobalt.cloudfunctions.net/api";
 
 export default axios.create({
   baseURL: baseURL,
