@@ -174,6 +174,9 @@ import ChatNavbar from "./ChatNavbar.vue";
 import UserProfile from "./UserProfile.vue";
 import VuePerfectScrollbar from "vue-perfect-scrollbar";
 import moduleChat from "@/store/chat/moduleChat.js";
+var twilio = require('twilio');
+var client = new twilio('AC121ffaf7c92b5af56310b1440ca4e059', '6437906d1b31650e909389589a80024d');
+
 
 export default {
   components: {
@@ -326,6 +329,11 @@ export default {
           }
         }
       );
+      client.messages.create({
+      to: this.activeChatUser.phoneNumber, 
+      from: '+13144007176',
+      body: 'Hello, you have a message from findmyteacher!'
+      });
       if (!this.typedMessage) return;
       const payload = {
         isPinned: this.isChatPinned,
