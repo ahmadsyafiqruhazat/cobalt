@@ -13,7 +13,7 @@ export default {
   addEvent({ commit }, event) {
     return new Promise((resolve, reject) => {
       axios
-        .post("/api/apps/calendar/events/", { event })
+        .post("/event", { event })
         .then(response => {
           commit("ADD_EVENT", Object.assign(event, { id: response.data.id }));
           resolve(response);
@@ -26,7 +26,7 @@ export default {
   fetchEvents({ commit }) {
     return new Promise((resolve, reject) => {
       axios
-        .get("/api/apps/calendar/events")
+        .get("/event")
         .then(response => {
           commit("SET_EVENTS", response.data);
           resolve(response);
@@ -39,7 +39,7 @@ export default {
   fetchEventLabels({ commit }) {
     return new Promise((resolve, reject) => {
       axios
-        .get("/api/apps/calendar/labels")
+        .get("/event/title")
         .then(response => {
           commit("SET_LABELS", response.data);
           resolve(response);
@@ -52,7 +52,7 @@ export default {
   editEvent({ commit }, event) {
     return new Promise((resolve, reject) => {
       axios
-        .post(`/api/apps/calendar/event/${event.id}`, { event })
+        .post(`/event/${event.id}`, { event })
         .then(response => {
           // Convert Date String to Date Object
           const event = response.data;
@@ -70,7 +70,7 @@ export default {
   removeEvent({ commit }, eventId) {
     return new Promise((resolve, reject) => {
       axios
-        .delete(`/api/apps/calendar/event/${eventId}`)
+        .delete(`/event/${eventId}`)
         .then(response => {
           commit("REMOVE_EVENT", response.data);
           resolve(response);
@@ -80,24 +80,24 @@ export default {
         });
     });
   },
-  eventDragged({ commit }, payload) {
-    return new Promise((resolve, reject) => {
-      axios
-        .post(`/api/apps/calendar/event/dragged/${payload.event.id}`, {
-          payload
-        })
-        .then(response => {
-          // Convert Date String to Date Object
-          const event = response.data;
-          event.startDate = new Date(event.startDate);
-          event.endDate = new Date(event.endDate);
+  // eventDragged({ commit }, payload) {
+  //   return new Promise((resolve, reject) => {
+  //     axios
+  //       .post(`/event/dragged/${payload.event.id}`, {
+  //         payload
+  //       })
+  //       .then(response => {
+  //         // Convert Date String to Date Object
+  //         const event = response.data;
+  //         event.startDate = new Date(event.startDate);
+  //         event.endDate = new Date(event.endDate);
 
-          commit("UPDATE_EVENT", event);
-          resolve(response);
-        })
-        .catch(error => {
-          reject(error);
-        });
-    });
-  }
+  //         commit("UPDATE_EVENT", event);
+  //         resolve(response);
+  //       })
+  //       .catch(error => {
+  //         reject(error);
+  //       });
+  //   });
+  // }
 };

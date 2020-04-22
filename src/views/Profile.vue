@@ -3,10 +3,10 @@
     <div class="profile-details">
       <img :src="image" class="profile-image" />
       <h1>
-        {{ name }}
+        {{ user_data.displayName }}
       </h1>
-      <p>{{ description }}</p>
-      <p>{{ contact }} | {{ email }}</p>
+      <p>{{ user_data.about }}</p>
+      <p>{{ user_data.phoneNumber }} </p>
       <li
         class="flex py-2 px-4 cursor-pointer hover:bg-primary hover:text-white"
       >
@@ -23,7 +23,7 @@
         </router-link>
       </li>
     </div>
-    <div class="past-experience-container">
+    <!-- <div class="past-experience-container">
       <div
         v-for="item in experiences"
         :key="item.id"
@@ -33,17 +33,20 @@
         <img :src="item.image" class="experience-image" />
         <p>{{ item.description }}</p>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script>
+import moduleUserManagement from "@/store/user-management/moduleUserManagement.js";
+
 export default {
   name: "ProfileView",
   components: {},
   props: {},
   data: function() {
     return {
+      user_data: null,
       image: "/static/img/profile_pic.png",
       name: "John Doe",
       contact: "+65 9234 5678",
@@ -62,7 +65,29 @@ export default {
     showSidebar() {
       this.$store.commit("TOGGLE_IS_VERTICAL_NAV_MENU_ACTIVE", true);
     }
-  }
+  },
+  created() {
+    // Register Module UserManagement Module
+    if (!moduleUserManagement.isRegistered) {
+      this.$store.registerModule("userManagement", moduleUserManagement);
+      moduleUserManagement.isRegistered = true;
+    }
+
+    const userId = this.$store.state.AppActiveUser.uid
+    this.$store
+      .dispatch("userManagement/fetchUser", userId)
+      .then(res => {
+        res.data.languages_known = res.data.languages_known ? res.data.languages_known.split(",") : [];
+        this.user_data = res.data;
+      })
+      .catch(err => {
+        if (err.response.status === 404) {
+          this.user_not_found = true;
+          return;
+        }
+        // console.error(err);
+      });
+  },
 };
 </script>
 
